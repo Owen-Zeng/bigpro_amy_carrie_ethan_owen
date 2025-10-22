@@ -1,4 +1,4 @@
-# First App by bigpro TARGET SHIP DATE: 2025-11-17
+# First App by bigpro 
 ## Roster: Carrie Ko (Back-end/Front-end), Ethan Saldanha (Back-end), Owen Zeng (Project Manager), Amy Shrestha (Front-end)
 **Description**: This website is a wiki, meaning it's a community run encyclopedia for the greater good. Anyone can access its various webpages containing community posts (like a QAF) by searching for a desired topic through a navbar, however users must be registered to create or edit any webpages. Logged in users will have access to a profile page, containing some personal information along with access to any webpages they've created or edited.
 
