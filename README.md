@@ -3,9 +3,9 @@
 **Description**: This website is a wiki, meaning it's a community run encyclopedia for the greater good. Anyone can access its various webpages containing community posts (like a QAF) by searching for a desired topic through a navbar, however users must be registered to create or edit any webpages. Logged in users will have access to a profile page, containing some personal information along with access to any webpages they've created or edited.
 
 ## Install guide
-1) Clone the repo into a local directory
+1) Clone the repo into a local directory:
 ```
-git clone https://github.com/Owen-Zeng/bigpro_owen_ethan_amy_carrie.git
+git clone https://github.com/Owen-Zeng/bigpro_amy_carrie_ethan_owen.git
 ```  
 2) Enter the app directory:
 ```
