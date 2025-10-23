@@ -7,9 +7,14 @@ app = Flask(__name__)  # create Flask object
 app.secret_key = b'bigproer'
 users = {"owen" : "123", "etan" : "435"}
 
+def loggedin():
+    if 'username' in session:
+        return True
+    return False
+
 @app.route("/", methods=['GET', 'POST'])
 def response():
-    if 'username' in session:
+    if loggedin():
         return redirect(url_for('home'))
     else:
         return redirect(url_for('login'))
@@ -17,7 +22,7 @@ def response():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if 'username' in session:
+    if loggedin():
         return redirect(url_for('home'))
     if request.method == 'POST':
         session.permanent = True
@@ -34,7 +39,7 @@ def login():
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
-    if 'username' in session:
+    if loggedin():
         return render_template('response.html', user=session['username'])
     else:
         return redirect(url_for('login'))
@@ -42,7 +47,7 @@ def home():
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    if 'username' in session:
+    if loggedin():
         session.pop('username', None)
         return render_template('logout.html')
     return redirect(url_for('login'))
