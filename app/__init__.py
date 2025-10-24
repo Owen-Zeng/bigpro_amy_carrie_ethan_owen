@@ -6,6 +6,8 @@ from flask import session
 #====================================================================================#
 app = Flask(__name__)  # create Flask object
 app.secret_key = b'bigproer'
+
+#temporary dictionary to represent pulling from SQLITE
 users = {"owen" : "123", "etan" : "435"}
 
 def loggedin():
@@ -33,8 +35,9 @@ def login():
             return redirect(url_for('home'))
         else:
             session.pop('username')
-            return loginpage(session['username'])
-        return loginpage(session['username'],valid=False)
+            return loginpage(valid=False)
+    else:
+        return loginpage(valid=False)
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
@@ -49,21 +52,23 @@ def home():
 def logout():
     if loggedin():
         session.pop('username', None)
-        return render_template('logout.html')
+        return logoutpage()
     return redirect(url_for('login'))
 
 #WEBPAGE ROUTING#
 #====================================================================================#
 def homepage(soul,a="Thetha"):
     return render_template('home.html',user=soul,)
-def loginpage(soul,valid= True):
-    if(valid=True):
+def loginpage(soul="",valid= True):
+    if(valid==True):
         return render_template('login.html',user=soul)
     else:
-        return render_template('login.html',user=soul,invalid="Your username or password was incorrect")
+        return render_template('login.html',invalid="Your username or password was incorrect")
+def logoutpage():
+    return render_template('logout.html')
 
 
-
+#=====================================================================================#
 
 if __name__ == "__main__":  # false if this file imported as module
     app.debug = True  # enable PSOD, auto-server-restart on code chg
