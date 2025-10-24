@@ -11,3 +11,11 @@ Should make a readable and organized flowchart for map of compenents/site.
 Add important function calls in component description.
 Guest Mode
 Need heading
+
+EthanS -- 2025-10-24 11:21
+- Login Functionality Completed
+By cannibalizing 18_session I was able to add a login function that asks for one other parameter from the user (a password) and compare it to a database of users.
+Thus, we can verify that a user exists on the platform.
+However, since the actualy SQLITE3 table of users doesn't exist yet, I'm just using a hard-coded dictionary as a placeholder. Should be okay to convert a SQLITE3 table to dict.
+Also reorganized the file into sections (login, webpage rendering, etc)
+If anyone has any questions lmk 
