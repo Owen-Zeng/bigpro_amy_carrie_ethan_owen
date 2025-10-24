@@ -19,3 +19,9 @@ Thus, we can verify that a user exists on the platform.
 However, since the actualy SQLITE3 table of users doesn't exist yet, I'm just using a hard-coded dictionary as a placeholder. Should be okay to convert a SQLITE3 table to dict.
 Also reorganized the file into sections (login, webpage rendering, etc)
 If anyone has any questions lmk 
+
+CarrieK -- 2025-10-24 11:48
+- Modified design doc to fit new target goal, added new features
+
+AmyS -- 2025-10-24 11:48
+- Modified design doc to fit new target goal, added new features
