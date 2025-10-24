@@ -1,4 +1,13 @@
 AmyS -- 2025-10-23 18:33 
-- INITIAL DD REVIEW: Try to more efficiently merge like tables together to simplify code. Make it clearer the process of connecting the ‘WEBPAGEINFO’ and ‘WEBPAGES’ tables and how we will use that to access usernames and the webpages they edited. Review the tables to make sure the ‘WEBPAGES’ table allows storage of multiple editors. Clearly define what way we will categorize the webpages list and what counts as popular pages. Add rough dates to tasks & roles chart for better organization.
+- INITIAL DD REVIEW: Try to more efficiently merge like tables together to simplify code.
+Make it clearer the process of connecting the ‘WEBPAGEINFO’ and ‘WEBPAGES’ tables and how we will use that to access usernames and the webpages they edited. 
+Review the tables to make sure the ‘WEBPAGES’ table allows storage of multiple editors.
+Clearly define what way we will categorize the webpages list and what counts as popular pages. Add rough dates to tasks & roles chart for better organization.
 
 
+OwenZ -- 2025-10-23 21:12
+- INITIAL DD REVIEW2: Cool stuff we saw others do.
+Should make a readable and organized flowchart for map of compenents/site.
+Add important function calls in component description.
+Guest Mode
+Need heading
