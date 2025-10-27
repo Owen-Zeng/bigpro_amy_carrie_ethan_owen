@@ -11,3 +11,6 @@ Should make a readable and organized flowchart for map of compenents/site.
 Add important function calls in component description.
 Guest Mode
 Need heading
+
+OwenZ -- 2025-10-27 1:47
+- Diagrams added and will print in the morning.
