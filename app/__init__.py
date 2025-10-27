@@ -2,13 +2,35 @@ from flask import Flask  # facilitate flask webserving
 from flask import render_template  # facilitate jinja templating
 from flask import request, redirect, url_for  # facilitate form submission
 from flask import session
+import sqlite3   #enable control of an sqlite database
+#SQLITE3 Databases
+#====================================================================================#
+DB_FILE="webstory.db"
+
+db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+c = db.cursor()
+c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT PRIMARY KEY, password TEXT NOT NULL);")
+c.execute(f"INSERT OR REPLACE INTO users VALUES('owen', '123');")
+c.execute(f"INSERT OR REPLACE INTO users VALUES('Ethan', 'salad');")
+
+
 #LOGIN FUNCTIONALITY#
 #====================================================================================#
 app = Flask(__name__)  # create Flask object
 app.secret_key = b'bigproer'
 
+users={}
+
+c.execute("SELECT * FROM users username;")
+username_roster=c.fetchall()
+for i in range(len(username_roster)):
+    users.update({username_roster[i][0]:username_roster[i][1]})
+print(users)
+
+db.commit() #save changes
+db.close()  #close database
 #temporary dictionary to represent pulling from SQLITE
-users = {"owen" : "123", "etan" : "435"}
+
 
 def loggedin():
     if 'username' in session:
