@@ -28,3 +28,6 @@ AmyS -- 2025-10-24 11:48
 
 OwenZ -- 2025-10-27 1:47
 - Diagrams added and will print in the morning.
+
+EthanS --2025-10-27 11:19
+ - Added a placeholder version of a user database in SQLITE3 to act as a base for the REGISTER functionality. To be updated in the future hopefully
