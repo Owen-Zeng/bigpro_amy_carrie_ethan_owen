@@ -13,6 +13,16 @@ c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT PRIMARY KEY, password 
 c.execute(f"INSERT OR REPLACE INTO users VALUES('owen', '123');")
 c.execute(f"INSERT OR REPLACE INTO users VALUES('Ethan', 'salad');")
 
+#REGISTER FUNCTIONALITY
+#====================================================================================#
+
+def register():
+    if loggedin():
+        return "Logged In"
+    else:
+        return 1
+
+
 
 #LOGIN FUNCTIONALITY#
 #====================================================================================#
@@ -25,7 +35,7 @@ c.execute("SELECT * FROM users username;")
 username_roster=c.fetchall()
 for i in range(len(username_roster)):
     users.update({username_roster[i][0]:username_roster[i][1]})
-print(users)
+
 
 db.commit() #save changes
 db.close()  #close database
@@ -88,7 +98,8 @@ def loginpage(soul="",valid= True):
         return render_template('login.html',invalid="Your username or password was incorrect")
 def logoutpage():
     return render_template('logout.html')
-
+def registerpage():
+    return render_template('register.html')
 
 #=====================================================================================#
 
