@@ -33,7 +33,13 @@ EthanS --2025-10-27 11:19
  - Added a placeholder version of a user database in SQLITE3 to act as a base for the REGISTER functionality. To be updated in the future hopefully
 
 CarrieK -- 2025-10-27 21:16
-- Shifted images of the uml diagrams to be under the proper categories
+- (During class) Shifted images of the uml diagrams to be under the proper categories
 
 AmyS -- 2025-10-27 21:16
-- Shifted images of the uml diagrams to be under the proper categories, reformatted text
+- (During class) Shifted images of the uml diagrams to be under the proper categories
+
+AmyS -- 2025-10-27 22:37
+- SECOND DD REVIEW: Clarify how we use content and previousEdit to build our blog, and merge tables together. Clear up where the history page will go if it is included in the final design. Emphasize the instructions of our scenario, and what each instruction’s limitations are. Condense the webstory paragraphs. Clearly define mermaid diagrams using a white background.
+
+OwenZ -- 2025-10-27 22:37
+- SECOND DD REVIEW: Clarify how we use content and previousEdit to build our blog, and merge tables together. Clear up where the history page will go if it is included in the final design. Emphasize the instructions of our scenario, and what each instruction’s limitations are. Condense the webstory paragraphs. Clearly define mermaid diagrams using a white background.
