@@ -68,8 +68,10 @@ def login():
         else:
             session.pop('username')
             return loginpage(valid=False)
+    elif (request.method == "GET"):
+        return redirect(url_for('register'))
     else:
-        return loginpage(valid=False)
+        return loginpage(valid=True)
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
@@ -87,6 +89,11 @@ def logout():
         return logoutpage()
     return redirect(url_for('login'))
 
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    # isRegistering = request.args["register"]
+    return registerpage()
 #WEBPAGE ROUTING#
 #====================================================================================#
 def homepage(soul,a="Thetha"):
