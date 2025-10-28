@@ -43,3 +43,6 @@ AmyS -- 2025-10-27 22:37
 
 OwenZ -- 2025-10-27 22:37
 - SECOND DD REVIEW: Clarify how we use content and previousEdit to build our blog, and merge tables together. Clear up where the history page will go if it is included in the final design. Emphasize the instructions of our scenario, and what each instruction’s limitations are. Condense the webstory paragraphs. Clearly define mermaid diagrams using a white background.
+
+CarrieK -- 2025-10-27 11:47
+- Added footer somewhere, added proper sqlite tables
