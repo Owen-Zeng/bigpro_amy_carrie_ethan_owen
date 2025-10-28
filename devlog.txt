@@ -31,3 +31,9 @@ OwenZ -- 2025-10-27 1:47
 
 EthanS --2025-10-27 11:19
  - Added a placeholder version of a user database in SQLITE3 to act as a base for the REGISTER functionality. To be updated in the future hopefully
+
+CarrieK -- 2025-10-27 21:16
+- Shifted images of the uml diagrams to be under the proper categories
+
+AmyS -- 2025-10-27 21:16
+- Shifted images of the uml diagrams to be under the proper categories, reformatted text
