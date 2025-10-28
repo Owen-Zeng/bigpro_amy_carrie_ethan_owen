@@ -3,6 +3,12 @@ from flask import render_template  # facilitate jinja templating
 from flask import request, redirect, url_for  # facilitate form submission
 from flask import session
 import sqlite3   #enable control of an sqlite database
+
+#FLASK declaration
+#====================================================================================#
+app = Flask(__name__)  # create Flask object
+app.secret_key = b'bigproer'
+
 #SQLITE3 Databases
 #====================================================================================#
 DB_FILE="webstory.db"
@@ -17,24 +23,31 @@ c.execute("CREATE TABLE IF NOT EXISTS authors(username TEXT, storyTitle TEXT);")
 #REGISTER FUNCTIONALITY
 #====================================================================================#
 
+@app.route("/register", methods=['GET', 'POST'])
 def register():
     if loggedin():
-        return "Logged In"
+        return redirect(url_for('home'))
     else:
-        return 1
-
+        if request.method == 'POST':
+            with sqlite3.connect(DB_FILE) as db:
+                c = db.cursor()
+                command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['email']}', '{request.form['pass']}');")
+                c.execute(command)
+                session.permanent = True
+                session['username'] = request.form['id']
+                session['password'] = request.form['pass']
+                return redirect(url_for('home'))
+    return registerpage()
 #LOGIN FUNCTIONALITY#
 #====================================================================================#
-app = Flask(__name__)  # create Flask object
-app.secret_key = b'bigproer'
+
 
 users={}
 
-c.execute("SELECT * FROM users username;")
-username_roster=c.fetchall()
-for i in range(len(username_roster)):
-    users.update({username_roster[i][0]:username_roster[i][1]})
+for row in c.execute("SELECT * FROM user_profile;"):
+    users.update({row[0]:row[1]})
 
+print(users)
 
 db.commit() #save changes
 db.close()  #close database
@@ -66,6 +79,7 @@ def login():
             return redirect(url_for('home'))
         else:
             session.pop('username')
+            session.pop('password')
             return loginpage(valid=False)
     else:
         return loginpage(valid=False)
@@ -75,7 +89,7 @@ def home():
     if loggedin():
         return homepage(session['username'])
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('register'))
 
 
 
@@ -88,11 +102,11 @@ def logout():
 
 #WEBPAGE ROUTING#
 #====================================================================================#
-def homepage(soul,a="Thetha"):
-    return render_template('home.html',user=soul,)
-def loginpage(soul="",valid= True):
+def homepage(user):
+    return render_template('home.html',username=user,)
+def loginpage(user="",valid = True):
     if(valid==True):
-        return render_template('login.html',user=soul)
+        return render_template('login.html',username=user)
     else:
         return render_template('login.html',invalid="Your username or password was incorrect")
 def logoutpage():
