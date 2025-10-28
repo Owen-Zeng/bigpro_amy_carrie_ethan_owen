@@ -46,3 +46,6 @@ OwenZ -- 2025-10-27 22:37
 
 CarrieK -- 2025-10-27 11:47
 - Added footer somewhere, added proper sqlite tables
+
+CarrieK -- 2025-10-27 13:20
+- Added register page and made it so values make their way into sqlite tables yayayayayayayayay
