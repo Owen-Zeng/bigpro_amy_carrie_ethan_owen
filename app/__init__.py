@@ -90,9 +90,14 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route("/register", methods=['GET', 'POST'])
+#IMPORTANT PLEASE READ TO SAVE YOURSELF TIME THIS REGISTER DOES NOT CHECK WHETHER THE INPUTS ARE REPEATED, WHICH WILL PROB CAUSE ERRORS
+@app.route("/register", methods=['POST'])
 def register():
     # isRegistering = request.args["register"]
+    if request.method=='POST':
+        username=request.form.get('id')
+        password=request.form.get('pass')
+        return registerpage(username,password)
     return registerpage()
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -105,8 +110,11 @@ def loginpage(soul="",valid= True):
         return render_template('login.html',invalid="Your username or password was incorrect")
 def logoutpage():
     return render_template('logout.html')
-def registerpage():
-    return render_template('register.html')
+def registerpage(username="",password="",valid= True):
+     if(valid==True):
+        return render_template('register.html')
+     else:
+        return render_template('register.html', invalid="Your username or password was incorrect")
 
 #=====================================================================================#
 

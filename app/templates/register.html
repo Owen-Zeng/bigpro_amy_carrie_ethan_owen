@@ -23,23 +23,18 @@
     </h1>
     <br>
     <h3>
-      Enter your username and password below to proceed.
+      Enter a valid username and password below to proceed.
     </h3>
     <h4>
-      Once logged in, you will not have to log back in until you log out!
+      
     </h4>
-      <form action="/login" method="POST">
+      <form action="/register" method="POST">
         <input type="text" name="id">
         <input type="text" name="pass">
         <br>
         <br>
-        <input type="submit" name="sub1" value = "login">
+         <input type = "submit" name="register" value = "Register">
         <br>
-      </form>
-
-      <form method = "GET">
-        <input type = "submit" name="register" value = "Register">
-      </form>
       <h5> {{invalid}} </h5>
     <br>
 
