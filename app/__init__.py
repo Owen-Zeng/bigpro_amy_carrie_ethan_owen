@@ -13,6 +13,16 @@ c.execute("CREATE TABLE IF NOT EXISTS user_profile(username TEXT PRIMARY KEY NOT
 c.execute("CREATE TABLE IF NOT EXISTS stories(storyTitle TEXT PRIMARY KEY NOT NULL, content TEXT, previousEdit TEXT, storyLink TEXT);")
 c.execute("CREATE TABLE IF NOT EXISTS authors(username TEXT, storyTitle TEXT);")
 
+
+#REGISTER FUNCTIONALITY
+#====================================================================================#
+
+def register():
+    if loggedin():
+        return "Logged In"
+    else:
+        return 1
+
 #LOGIN FUNCTIONALITY#
 #====================================================================================#
 app = Flask(__name__)  # create Flask object
@@ -24,7 +34,7 @@ c.execute("SELECT * FROM users username;")
 username_roster=c.fetchall()
 for i in range(len(username_roster)):
     users.update({username_roster[i][0]:username_roster[i][1]})
-print(users)
+
 
 db.commit() #save changes
 db.close()  #close database
@@ -87,7 +97,8 @@ def loginpage(soul="",valid= True):
         return render_template('login.html',invalid="Your username or password was incorrect")
 def logoutpage():
     return render_template('logout.html')
-
+def registerpage():
+    return render_template('register.html')
 
 #=====================================================================================#
 
