@@ -9,10 +9,9 @@ DB_FILE="webstory.db"
 
 db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor()
-c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT PRIMARY KEY, password TEXT NOT NULL);")
-c.execute(f"INSERT OR REPLACE INTO users VALUES('owen', '123');")
-c.execute(f"INSERT OR REPLACE INTO users VALUES('Ethan', 'salad');")
-
+c.execute("CREATE TABLE IF NOT EXISTS user_profile(username TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL, email TEXT PRIMARY KEY NOT NULL);")
+c.execute("CREATE TABLE IF NOT EXISTS stories(storyTitle TEXT PRIMARY KEY NOT NULL, content TEXT, previousEdit TEXT, storyLink TEXT);")
+c.execute("CREATE TABLE IF NOT EXISTS authors(username TEXT, storyTitle TEXT);")
 
 #LOGIN FUNCTIONALITY#
 #====================================================================================#
