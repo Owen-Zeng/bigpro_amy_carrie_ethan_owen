@@ -52,3 +52,6 @@ CarrieK -- 2025-10-27 13:20
 
 AmyS -- 2025-10-27 23:19
 - Fixed errors in registration values where email became password, added comments for clarity.
+
+EthanS -- 20205-10-29 11:44
+- Discovered new error with loginpage telling us the username or password is incorrect without singing in ever
