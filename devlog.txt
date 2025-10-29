@@ -1,0 +1,54 @@
+AmyS -- 2025-10-23 18:33
+- INITIAL DD REVIEW: Try to more efficiently merge like tables together to simplify code.
+Make it clearer the process of connecting the ‘WEBPAGEINFO’ and ‘WEBPAGES’ tables and how we will use that to access usernames and the webpages they edited.
+Review the tables to make sure the ‘WEBPAGES’ table allows storage of multiple editors.
+Clearly define what way we will categorize the webpages list and what counts as popular pages. Add rough dates to tasks & roles chart for better organization.
+
+
+OwenZ -- 2025-10-23 21:12
+- INITIAL DD REVIEW2: Cool stuff we saw others do.
+Should make a readable and organized flowchart for map of compenents/site.
+Add important function calls in component description.
+Guest Mode
+Need heading
+
+EthanS -- 2025-10-24 11:21
+- Login Functionality Completed
+By cannibalizing 18_session I was able to add a login function that asks for one other parameter from the user (a password) and compare it to a database of users.
+Thus, we can verify that a user exists on the platform.
+However, since the actualy SQLITE3 table of users doesn't exist yet, I'm just using a hard-coded dictionary as a placeholder. Should be okay to convert a SQLITE3 table to dict.
+Also reorganized the file into sections (login, webpage rendering, etc)
+If anyone has any questions lmk
+
+CarrieK -- 2025-10-24 11:48
+- Modified design doc to fit new target goal, added new features
+
+AmyS -- 2025-10-24 11:48
+- Modified design doc to fit new target goal, added new features
+
+OwenZ -- 2025-10-27 1:47
+- Diagrams added and will print in the morning.
+
+EthanS --2025-10-27 11:19
+ - Added a placeholder version of a user database in SQLITE3 to act as a base for the REGISTER functionality. To be updated in the future hopefully
+
+CarrieK -- 2025-10-27 21:16
+- (During class) Shifted images of the uml diagrams to be under the proper categories
+
+AmyS -- 2025-10-27 21:16
+- (During class) Shifted images of the uml diagrams to be under the proper categories
+
+AmyS -- 2025-10-27 22:37
+- SECOND DD REVIEW: Clarify how we use content and previousEdit to build our blog, and merge tables together. Clear up where the history page will go if it is included in the final design. Emphasize the instructions of our scenario, and what each instruction’s limitations are. Condense the webstory paragraphs. Clearly define mermaid diagrams using a white background.
+
+OwenZ -- 2025-10-27 22:37
+- SECOND DD REVIEW: Clarify how we use content and previousEdit to build our blog, and merge tables together. Clear up where the history page will go if it is included in the final design. Emphasize the instructions of our scenario, and what each instruction’s limitations are. Condense the webstory paragraphs. Clearly define mermaid diagrams using a white background.
+
+CarrieK -- 2025-10-27 11:47
+- Added footer somewhere, added proper sqlite tables
+
+CarrieK -- 2025-10-27 13:20
+- Added register page and made it so values make their way into sqlite tables yayayayayayayayay
+
+AmyS -- 2025-10-27 23:19
+- Fixed errors in registration values where email became password, added comments for clarity.
