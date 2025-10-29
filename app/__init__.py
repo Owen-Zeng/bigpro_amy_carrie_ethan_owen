@@ -40,7 +40,7 @@ def register():
             with sqlite3.connect(DB_FILE) as db:
                 c = db.cursor()
                 # insert db values for each form
-                command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['email']}', '{request.form['pass']}');")
+                command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
                 c.execute(command)
                 # keeps session alive even if page closes
                 session.permanent = True
@@ -58,7 +58,7 @@ def register():
 users={}
 
 for row in c.execute("SELECT * FROM user_profile;"):
-    users.update({row[0]:row[2]})
+    users.update({row[0]:row[1]})
 
 print(users)
 
