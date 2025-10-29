@@ -42,14 +42,16 @@ def register():
                 # keeps session alive even if page closes
                 session.permanent = True
                 # stores username and pass as id and pass, respectively
-                t = "Please enter a valid "
-                if (request.form['id'] == ""):
-                    t = t + "username "
-                if(request.form['email'] == ""):
-                    t = t + "email "
-                if(request.form['pass'] == ""):
-                    t = t + "password "
-                return registerpage(False, t)
+                t = ""
+                if(request.form['id'] == "" or request.form['pass'] == "" or request.form['email'] == ""):
+                    t = "Please enter a valid "
+                    if(request.form['id'] == ""):
+                        t = t + "username "
+                    if(request.form['email'] == ""):
+                        t = t + "email "
+                    if(request.form['pass'] == ""):
+                        t = t + "password "
+                    return registerpage(False, t)
                 # insert db values for each form
                 command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
                 session['username'] = request.form['id']
