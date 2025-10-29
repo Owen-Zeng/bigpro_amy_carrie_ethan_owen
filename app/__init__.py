@@ -40,6 +40,12 @@ def register():
             with sqlite3.connect(DB_FILE) as db:
                 c = db.cursor()
                 # insert db values for each form
+                if(request.form['id'] == ''):
+                    return registerpage(False, "Enter valid username")
+                if(request.form['pass'] == ''):
+                    return registerpage(False, "Enter valid password")
+                if(request.form['email'] == ''):
+                    return registerpage(False, "Enter valid email")
                 command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
                 c.execute(command)
                 # keeps session alive even if page closes
@@ -139,8 +145,11 @@ def logoutpage():
     return render_template('logout.html')
 
 # returns the register page html template
-def registerpage():
-    return render_template('register.html')
+def registerpage(valid = True, error=""):
+    if(valid == True):
+        return render_template('register.html')
+    else:
+        return render_template('register.html', invalid = error)
 
 
 #=====================================================================================#
