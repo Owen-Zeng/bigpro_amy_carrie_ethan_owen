@@ -53,6 +53,7 @@ def register():
                         t = t + "password "
                     return registerpage(False, t)
                 # insert db values for each form
+                #need to add exception handling
                 command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
                 session['username'] = request.form['id']
                 session['password'] = request.form['pass']
@@ -111,6 +112,7 @@ def login():
             #session.pop('username')
             #session.pop('password')
                         return loginpage(valid=False)
+        return loginpage(valid = False)
     else:
         return loginpage(valid=True)
 
@@ -158,5 +160,5 @@ def registerpage(valid = True, error=""):
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
-    #app.debug = True  # enable PSOD, auto-server-restart on code chg
+    app.debug = True  # enable PSOD, auto-server-restart on code chg
     app.run(port=8000)
