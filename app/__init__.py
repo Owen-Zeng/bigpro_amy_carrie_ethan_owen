@@ -39,14 +39,19 @@ def register():
             # open sqlite3 db as db
             with sqlite3.connect(DB_FILE) as db:
                 c = db.cursor()
-                # insert db values for each form
-                command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
-                c.execute(command)
+               
                 # keeps session alive even if page closes
                 session.permanent = True
                 # stores username and pass as id and pass, respectively
                 session['username'] = request.form['id']
                 session['password'] = request.form['pass']
+                if (session['username'] == "" or session['email'] == "" or session['password'] == ""):
+                    session.pop('username')
+                    session.pop('password')
+                    return registerpage(valid=False)
+                # insert db values for each form
+                command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
+                c.execute(command) 
                 return redirect(url_for('home'))
     # if not logged in, show register page
     return registerpage()
@@ -99,7 +104,7 @@ def login():
             session.pop('password')
             return loginpage(valid=False)
     else:
-        return loginpage(valid=False)
+        return loginpage(valid=True)
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
@@ -125,7 +130,7 @@ def homepage(user):
 
 # if the username is valid, return the login page html template
 # else, return the same page but with the incorrect username/password text
-def loginpage(user="",valid = True):
+def loginpage(user="",valid=True):
     if(valid==True):
         return render_template('login.html',username=user)
     else:
@@ -136,11 +141,14 @@ def logoutpage():
     return render_template('logout.html')
 
 # returns the register page html template
-def registerpage():
-    return render_template('register.html')
+def registerpage(user="", valid=True):
+    if(valid==True):
+        return render_template('register.html',username=user)
+    else:
+        return render_template('register.html',invalid="Please enter valid values.")
 
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
     #app.debug = True  # enable PSOD, auto-server-restart on code chg
-    app.run()
+    app.run(port=8000)
