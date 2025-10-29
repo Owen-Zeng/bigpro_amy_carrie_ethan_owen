@@ -49,7 +49,7 @@ def register():
                     t = t + "email "
                 if(request.form['pass'] == ""):
                     t = t + "password "
-                return registerpage(valid=False, t)
+                return registerpage(False, t)
                 # insert db values for each form
                 command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
                 session['username'] = request.form['id']
