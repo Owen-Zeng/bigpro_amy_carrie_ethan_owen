@@ -95,14 +95,17 @@ def login():
     # and login, makes sure to remove invalid login credentials
     if request.method == 'POST':
         session.permanent = True
-        session['username'] = request.form['id']
-        session['password'] = request.form['pass']
-        if users.get(session['username'])==session['password']:
-            return redirect(url_for('home'))
-        else:
-            session.pop('username')
-            session.pop('password')
-            return loginpage(valid=False)
+        with sqlite3.connect(DB_FILE) as db:
+                c = db.cursor()
+                for row in c.execute(f"SELECT * FROM user_profile WHERE username LIKE '{request.form['id']}';"):
+                    if(row[1] == request.form['pass']):
+                        session['username'] = request.form['id']
+                        session['password'] = request.form['pass']
+                        return redirect(url_for('home'))
+                    else:
+            #session.pop('username')
+            #session.pop('password')
+                        return loginpage(valid=False)
     else:
         return loginpage(valid=True)
 
