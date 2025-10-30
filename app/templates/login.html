@@ -18,32 +18,29 @@
   </head>
 
   <body>
-    <ul> 
+    <ul>
       <li> <a href = "register"> Register </a> </li>
 
     </ul>
 
 
     <h1>
-      Please sign in
+      Sign In
     </h1>
     <br>
     <h3>
       Enter your username and password below to proceed.
     </h3>
-    <h4>
-      Once logged in, you will not have to log back in until you log out!
-    </h4>
       <form action="/login" method="POST">
         Username: <input type="text" name="id">
         Password: <input type="text" name="pass">
         <br>
         <br>
-        <input type="submit" name="sub1">
+        <input type="submit" name="sub1" value="Sign In">
       </form>
       <h5> {{invalid}} </h5>
     <br>
-    <p> If you don't have an account, click the button below to register </p>
+    <p> If you don't have an account, click the button below to register. </p>
     <a href="{{url_for('register')}}"> <button>Register</button> </a>
   </body>
 
