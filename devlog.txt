@@ -58,3 +58,6 @@ EthanS -- 2025-10-29 11:44
 
 CarrieK -- 2025-10-29-12:57
 - Fixed more register page errors, updates register page, updated all pages to include footer, fixed login page errors
+
+OwenZ -- 2025-10-30-00:49
+- Added a bad looking nav bar and also tried to get dynamic stories to work
