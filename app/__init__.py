@@ -137,10 +137,23 @@ def stories():
         return storiespage()
     return loginpage()
 
-'''
-@app.route("/stories/<name>", methods=['GET', 'POST'])
-def stories(name):
-    return'''
+@app.route("/singlestory", methods=['GET', 'POST'])
+def singlestory():
+    if request.method == 'POST':
+        session.permanent = True
+        return singlestorypage()
+    return singlestorypage()
+    '''
+        with sqlite3.connect(DB_FILE) as db:
+            c = db.cursor()
+            for row in c.execute(f"SELECT * FROM stories;"):
+                if(row[1] == request.form['pass']):
+                    session['storyTitle'] = request.form['title']
+                    session['content'] = request.form['content']
+                    session['prevEdit'] = request.form['prevEdit']
+                    session['storyLink'] = request.form['link']
+                    return redirect(url_for('home'))
+    '''
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -171,7 +184,7 @@ def registerpage(valid = True, error=""):
 def storiespage():
     return render_template("stories.html")
 
-def singleStory():
+def singlestorypage():
     return render_template("singlestory.html")
 
 #=====================================================================================#

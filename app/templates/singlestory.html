@@ -18,15 +18,24 @@
   </head>
 
   <body>
-    <ul> 
+    <ul>
       <li> <a href = "logout"> Logout </a> </li>
       <li> <a href = "home"> Homepage </a> </li>
       <li> <a href = "stories"> All Stories </a> </li>
     </ul>
 
-    <h1> 
-      One story
+    <h1>
+      Create Story
     </h1>
+
+      <form action="/singlestory" method="POST">
+        Title: <input type="text" name="title"></br></br>
+        Content: <input type="text" name="content"></br></br>
+        Link: <input type="text" name="link">
+        <br>
+        <br>
+        <input type="submit" name="sub1" value="Submit">
+      </form>
 
 
   </body>
