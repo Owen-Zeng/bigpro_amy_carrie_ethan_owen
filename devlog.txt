@@ -64,3 +64,8 @@ OwenZ -- 2025-10-30-00:49
 
 EthanS -- 2025:10-30-11:41
 - Fixed dynamic stories not working
+
+CarrieK -- 2025-10-29-11:45
+- Fixed error where entering an existing username would break the page :(
+- Added some stuff to some templates I forgot about
+
