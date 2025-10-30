@@ -131,15 +131,17 @@ def logout():
         return logoutpage()
     return redirect(url_for('login'))
 
-@app.route("/stories", methods=['GET', 'POST'])
-def stories():
-    if loggedin():
-        return stories()
-    return loginpage()
 
-@app.route("/stories/<name>", methods=['GET', 'POST'])
-def stories(name):
-    return
+@app.route("/stories")
+@app.route("/stories/<name>",methods=['GET', 'POST'])
+def stories(name=""):
+    if loggedin():
+        if(name==""):
+            return storiespage()
+        else:
+            return singleStory(name)
+    else:
+        return loginpage()
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -165,13 +167,17 @@ def registerpage(valid = True, error=""):
         return render_template('register.html')
     else:
         return render_template('register.html', invalid = error)
-    
-# returns the stories page 
+
+# returns the stories page
 def storiespage():
     return render_template("stories.html")
 
-def singleStory():
-    return render_template("singlestory.html")
+def singleStory(name=""):
+    return render_template("singlestory.html", storyName=name)
+
+#Navbar below:
+#=====================================================================================#
+
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
