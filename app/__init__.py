@@ -53,7 +53,9 @@ def register():
                         t = t + "password "
                     return registerpage(False, t)
                 # insert db values for each form
-                #need to add exception handling
+                for row in c.execute(f"SELECT * FROM user_profile WHERE username = '{request.form['id']}'"):
+                    if(row[0] != ''):
+                        return registerpage(False, "Username taken")
                 command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
                 session['username'] = request.form['id']
                 session['password'] = request.form['pass']
@@ -130,7 +132,7 @@ def logout():
         session.pop('username', None)
         return logoutpage()
     return redirect(url_for('login'))
-
+'''
 @app.route("/stories", methods=['GET', 'POST'])
 def stories():
     if loggedin():
@@ -140,7 +142,7 @@ def stories():
 @app.route("/stories/<name>", methods=['GET', 'POST'])
 def stories(name):
     return
-
+'''
 #WEBPAGE ROUTING#
 #====================================================================================#
 # returns the home page html template
