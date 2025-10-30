@@ -61,3 +61,6 @@ CarrieK -- 2025-10-29-12:57
 
 OwenZ -- 2025-10-30-00:49
 - Added a bad looking nav bar and also tried to get dynamic stories to work
+
+EthanS -- 2025:10-30-11:41
+- Fixed dynamic stories not working
