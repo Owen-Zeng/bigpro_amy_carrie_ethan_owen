@@ -131,6 +131,15 @@ def logout():
         return logoutpage()
     return redirect(url_for('login'))
 
+@app.route("/stories", methods=['GET', 'POST'])
+def stories():
+    if loggedin():
+        return stories()
+    return loginpage()
+
+@app.route("/stories/<name>", methods=['GET', 'POST'])
+def stories(name):
+    return
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -156,7 +165,13 @@ def registerpage(valid = True, error=""):
         return render_template('register.html')
     else:
         return render_template('register.html', invalid = error)
+    
+# returns the stories page 
+def storiespage():
+    return render_template("stories.html")
 
+def singleStory():
+    return render_template("singlestory.html")
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
