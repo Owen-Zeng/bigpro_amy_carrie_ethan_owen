@@ -134,12 +134,13 @@ def logout():
 @app.route("/stories", methods=['GET', 'POST'])
 def stories():
     if loggedin():
-        return stories()
+        return storiespage()
     return loginpage()
 
+'''
 @app.route("/stories/<name>", methods=['GET', 'POST'])
 def stories(name):
-    return
+    return'''
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -175,5 +176,5 @@ def singleStory():
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
-    app.debug = True  # enable PSOD, auto-server-restart on code chg
-    app.run(port=8000)
+    #app.debug = True  # enable PSOD, auto-server-restart on code chg
+    app.run(port=8001)
