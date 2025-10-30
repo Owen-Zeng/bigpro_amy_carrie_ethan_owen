@@ -37,7 +37,7 @@ def login():
             session.pop('username')
             return loginpage(valid=False)
     else:
-        return loginpage(valid=False)
+            return loginpage(valid=True)
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
