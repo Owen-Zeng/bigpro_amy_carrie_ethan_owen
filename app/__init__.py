@@ -53,7 +53,9 @@ def register():
                         t = t + "password "
                     return registerpage(False, t)
                 # insert db values for each form
-                #need to add exception handling
+                for row in c.execute(f"SELECT * FROM user_profile WHERE username = '{request.form['id']}'"):
+                    if(row[0] != ''):
+                        return registerpage(False, "Username taken")
                 command = (f"INSERT INTO user_profile VALUES ('{request.form['id']}', '{request.form['pass']}', '{request.form['email']}');")
                 session['username'] = request.form['id']
                 session['password'] = request.form['pass']
@@ -131,11 +133,16 @@ def logout():
         return logoutpage()
     return redirect(url_for('login'))
 
-@app.route("/stories", methods=['GET', 'POST'])
-def stories():
+@app.route("/stories")
+@app.route("/stories/<name>",methods=['GET', 'POST'])
+def stories(name=""):
     if loggedin():
-        return storiespage()
-    return loginpage()
+        if(name==""):
+            return storiespage()
+        else:
+            return singlestorypage(name)
+    else:
+        return loginpage()
 
 @app.route("/singlestory", methods=['GET', 'POST'])
 def singlestory():
@@ -143,17 +150,6 @@ def singlestory():
         session.permanent = True
         return singlestorypage()
     return singlestorypage()
-    '''
-        with sqlite3.connect(DB_FILE) as db:
-            c = db.cursor()
-            for row in c.execute(f"SELECT * FROM stories;"):
-                if(row[1] == request.form['pass']):
-                    session['storyTitle'] = request.form['title']
-                    session['content'] = request.form['content']
-                    session['prevEdit'] = request.form['prevEdit']
-                    session['storyLink'] = request.form['link']
-                    return redirect(url_for('home'))
-    '''
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -179,13 +175,16 @@ def registerpage(valid = True, error=""):
         return render_template('register.html')
     else:
         return render_template('register.html', invalid = error)
-    
-# returns the stories page 
+
+# returns the stories page
 def storiespage():
     return render_template("stories.html")
 
-def singlestorypage():
-    return render_template("singlestory.html")
+def singlestorypage(name=""):
+    return render_template("singlestory.html", storyName=name)
+
+#Navbar below:
+#=====================================================================================#
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
