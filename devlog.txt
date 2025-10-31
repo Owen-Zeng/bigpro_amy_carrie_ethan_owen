@@ -72,3 +72,7 @@ CarrieK -- 2025-10-30-11:45
 AmyS -- 2025-10-30-11:47
 - Fixed html errors and navbar stylistic problems
 - Fixed all stories page and create story page
+
+CarrieK -- 2025-10-31-11:55
+- Removed link input in singlestory.html
+- Added sqlite functionality to singlestory and more stuff (i forgot what i did already.......)
