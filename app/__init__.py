@@ -147,6 +147,12 @@ def stories(name=""):
 @app.route("/singlestory", methods=['GET', 'POST'])
 def singlestory():
     if request.method == 'POST':
+        with sqlite3.connect(DB_FILE) as db:
+            c = db.cursor()
+            if(request.form['title'] == "" or request.form['content'] == ""):
+                return singlestorypage("", False, "Enter valid content/title")
+            c.execute(f"INSERT INTO stories VALUES ('{request.form['title']}', '{request.form['content']}', 'erm', 'tempaaaaaaaaaa')")
+            c.execute(f"INSERT INTO authors VALUES ('{session['username']}', '{request.form['title']}')")
         session.permanent = True
         return singlestorypage()
     return singlestorypage()
@@ -180,13 +186,13 @@ def registerpage(valid = True, error=""):
 def storiespage():
     return render_template("stories.html")
 
-def singlestorypage(name=""):
-    return render_template("singlestory.html", storyName=name)
+def singlestorypage(name="", valid = True, error=""):
+    return render_template("singlestory.html", storyName=name, invalid = error)
 
 #Navbar below:
 #=====================================================================================#
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
-    #app.debug = True  # enable PSOD, auto-server-restart on code chg
+    app.debug = True  # enable PSOD, auto-server-restart on code chg
     app.run(port=8001)
