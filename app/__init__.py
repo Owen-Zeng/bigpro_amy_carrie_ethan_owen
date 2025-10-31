@@ -154,7 +154,7 @@ def singlestory():
             c.execute(f"INSERT INTO stories VALUES ('{request.form['title']}', '{request.form['content']}', 'erm', 'tempaaaaaaaaaa')")
             c.execute(f"INSERT INTO authors VALUES ('{session['username']}', '{request.form['title']}')")
         session.permanent = True
-        return singlestorypage()
+        return homepage(session['username']) # we dont have to redirect here
     return singlestorypage()
 
 #WEBPAGE ROUTING#
