@@ -1,7 +1,6 @@
 # First App by bigpro 
 ## Roster: Carrie Ko (Back-end/Front-end), Ethan Saldanha (Back-end), Owen Zeng (Project Manager), Amy Shrestha (Front-end)
-**Description**: This website is a wiki, meaning it's a community run encyclopedia for the greater good. Anyone can access its various webpages containing community posts (like a QAF) by searching for a desired topic through a navbar, however users must be registered to create or edit any webpages. Logged in users will have access to a profile page, containing some personal information along with access to any webpages they've created or edited.
-
+**Description**: This website is a place where users can read, write, and contribute to different stories. A user must sign up to edit stories and stories they've contributed to will be visible on their homepage. When editing a story, the user can only see the most recent edit as reference and once a user has edited a story, they cannot edit it again. Users are also able to browse through created stories and read them for their own enjoyment.
 ## Install guide
 1) Clone the repo into a local directory:
 ```
