@@ -142,13 +142,9 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route("/stories")
-@app.route("/stories/<name>",methods=['GET', 'POST'])
 def stories(name=""):
     if loggedin():
-        if(name==""):
-            return storiespage()
-        else:
-            return singlestorypage(name)
+        return storiespage()
     else:
         return loginpage()
 
@@ -157,7 +153,7 @@ def singlestory():
     if loggedin():
         if request.method == 'POST':
             givenTitle = request.form['title']
-            
+
             with sqlite3.connect(DB_FILE) as db:
                 c = db.cursor()
                 if(request.form['title'] == "" or request.form['content'] == ""):
@@ -177,15 +173,15 @@ def createdstory(link):
         c = db.cursor()
         c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
         storyRow = c.fetchone()
-            
+
         c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
         authorRow = c.fetchone()
-        
+
         if (storyRow is None):
             return "Story doesn't exist"
         storyDict[storyRow[0]] = storyRow[1]
         print(storyDict)
-        
+
     session.permanent = True
     return createdstorypage(storyRow[0], storyRow[1]) # we dont have to redirect here
 
