@@ -30,7 +30,7 @@
 
     <ul>
         {% for story in stories %}
-        <li><a href="{{ url_for('createdstory', link=story.title)}}">{{ story.title }}</a> created by {{ username }}</li>
+        <li><a href="{{ url_for('createdstory', link=story) }}">{{ story }}</a> created by {{ username }}</li>
         {% endfor %}
     </ul>
   </body>

@@ -69,6 +69,10 @@ def register():
 #====================================================================================#
 # dict of all stories
 storyDict={}
+
+for row in c.execute(f"SELECT storyTitle, content FROM stories"):
+    storyDict.update({row[0]:row[1]})
+
 print(storyDict)
 
 # dict of usernames:password
@@ -150,18 +154,22 @@ def stories(name=""):
 
 @app.route("/singlestory", methods=['GET', 'POST'])
 def singlestory():
-    if request.method == 'POST':
-        with sqlite3.connect(DB_FILE) as db:
-            c = db.cursor()
-            if(request.form['title'] == "" or request.form['content'] == ""):
-                return singlestorypage("", False, "Enter valid content/title")
-            else:
-                c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{request.form['title']}', '{request.form['content']}', '{request.form['content']}', 'http://127.0.0.1:8001/singlestory/{request.form['title']}')")
-                c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{request.form['title']}')")
-                storyDict[request.form["title"]] = request.form["content"]
-        session.permanent = True
-        return redirect(url_for('createdstory', link=request.form['title']))
-    return singlestorypage()
+    if loggedin():
+        if request.method == 'POST':
+            givenTitle = request.form['title']
+            
+            with sqlite3.connect(DB_FILE) as db:
+                c = db.cursor()
+                if(request.form['title'] == "" or request.form['content'] == ""):
+                    return singlestorypage("", False, "Enter valid content/title")
+                else:
+                    c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', 'http://127.0.0.1:8001/singlestory/{givenTitle}')")
+                    c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{givenTitle}')")
+                    storyDict[givenTitle] = request.form['content']
+            session.permanent = True
+            return redirect(url_for('createdstory', link=givenTitle))
+        return singlestorypage()
+    return loginpage()
 
 @app.route("/singlestory/<link>", methods=['GET', 'POST'])
 def createdstory(link):
@@ -172,10 +180,12 @@ def createdstory(link):
             
         c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
         authorRow = c.fetchone()
+        
         if (storyRow is None):
             return "Story doesn't exist"
         storyDict[storyRow[0]] = storyRow[1]
         print(storyDict)
+        
     session.permanent = True
     return createdstorypage(storyRow[0], storyRow[1]) # we dont have to redirect here
 
@@ -206,7 +216,7 @@ def registerpage(valid = True, error=""):
 
 # returns the stories page
 def storiespage():
-    return render_template("stories.html", stories=storyDict)
+    return render_template("stories.html", stories=storyDict, username=session['username'])
 
 def singlestorypage(name="", valid = True, error=""):
     return render_template("singlestory.html", storyName=name, invalid = error)
