@@ -159,7 +159,7 @@ def singlestory():
                 if(request.form['title'] == "" or request.form['content'] == ""):
                     return singlestorypage("", False, "Enter valid content/title")
                 else:
-                    c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', 'http://127.0.0.1:8001/singlestory/{givenTitle}')")
+                    c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', '/singlestory/{givenTitle}')")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{givenTitle}')")
                     storyDict[givenTitle] = request.form['content']
             session.permanent = True
