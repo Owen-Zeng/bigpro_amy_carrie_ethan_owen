@@ -14,7 +14,7 @@ cd bigpro_amy_carrie_ethan_owen/
 ```
 python3 -m venv venv
 ```
-4) Activate virtual env for Linux or Windows:
+4) Activate virtual env for Linux or Windows:  
 Linux
 ```
 . venv/bin/activate
