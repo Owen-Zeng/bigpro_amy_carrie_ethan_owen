@@ -22,5 +22,5 @@ flask run
 ```
 2) Open the website at website:
 ```
-http://127.0.0.1:8001
+http://127.0.0.1:5000
 ```  
