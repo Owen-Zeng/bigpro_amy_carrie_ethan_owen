@@ -6,11 +6,15 @@
 ```
 git clone https://github.com/Owen-Zeng/bigpro_amy_carrie_ethan_owen.git
 ```
-2) Open a virtual environment:
+2) Enter the app directory:
+```
+cd bigpro_amy_carrie_ethan_owen/
+```
+3) Open a virtual environment:
 ```
 python3 -m venv venv
 ```
-3) Activate virtual env for Linux or Windows:  
+4) Activate virtual env for Linux or Windows:  
 --> Linux
 ```
 . venv/bin/activate
@@ -18,10 +22,6 @@ python3 -m venv venv
 --> Windows
 ```
 venv\Scripts\activate
-```
-4) Enter the app directory:
-```
-cd bigpro_amy_carrie_ethan_owen/
 ```
 5) Install necessary modules:
 ```
