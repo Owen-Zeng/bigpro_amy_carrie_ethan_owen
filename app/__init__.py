@@ -67,6 +67,10 @@ def register():
 
 #LOGIN FUNCTIONALITY#
 #====================================================================================#
+# dict of all stories
+storyDict={}
+print(storyDict)
+
 # dict of usernames:password
 users={}
 
@@ -151,11 +155,29 @@ def singlestory():
             c = db.cursor()
             if(request.form['title'] == "" or request.form['content'] == ""):
                 return singlestorypage("", False, "Enter valid content/title")
-            c.execute(f"INSERT INTO stories VALUES ('{request.form['title']}', '{request.form['content']}', 'erm', 'tempaaaaaaaaaa')")
-            c.execute(f"INSERT INTO authors VALUES ('{session['username']}', '{request.form['title']}')")
+            else:
+                c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{request.form['title']}', '{request.form['content']}', '{request.form['content']}', 'http://127.0.0.1:8001/singlestory/{request.form['title']}')")
+                c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{request.form['title']}')")
+                storyDict[request.form["title"]] = request.form["content"]
         session.permanent = True
-        return homepage(session['username']) # we dont have to redirect here
+        return redirect(url_for('createdstory', link=request.form['title']))
     return singlestorypage()
+
+@app.route("/singlestory/<link>", methods=['GET', 'POST'])
+def createdstory(link):
+    with sqlite3.connect(DB_FILE) as db:
+        c = db.cursor()
+        c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
+        storyRow = c.fetchone()
+            
+        c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
+        authorRow = c.fetchone()
+        if (storyRow is None):
+            return "Story doesn't exist"
+        storyDict[storyRow[0]] = storyRow[1]
+        print(storyDict)
+    session.permanent = True
+    return createdstorypage(storyRow[0], storyRow[1]) # we dont have to redirect here
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -184,15 +206,18 @@ def registerpage(valid = True, error=""):
 
 # returns the stories page
 def storiespage():
-    return render_template("stories.html")
+    return render_template("stories.html", stories=storyDict)
 
 def singlestorypage(name="", valid = True, error=""):
     return render_template("singlestory.html", storyName=name, invalid = error)
+
+def createdstorypage(title="", content="", valid = True):
+    return render_template("createdstory.html", storyTitle=title, storyContent = content)
 
 #Navbar below:
 #=====================================================================================#
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
-    app.debug = True  # enable PSOD, auto-server-restart on code chg
+    #app.debug = True  # enable PSOD, auto-server-restart on code chg
     app.run(port=8001)

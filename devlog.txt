@@ -76,3 +76,7 @@ AmyS -- 2025-10-30-11:47
 CarrieK -- 2025-10-31-11:55
 - Removed link input in singlestory.html
 - Added sqlite functionality to singlestory and more stuff (i forgot what i did already.......)
+
+AmyS -- 2025-11-02 21:06
+- Finished creation of new story page with submission of singlestory page
+- Created createdstory.html and fixed links in all stories

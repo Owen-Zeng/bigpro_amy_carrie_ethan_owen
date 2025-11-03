@@ -19,21 +19,19 @@
 
   <body>
     <ul>
-      <li> <a href = "logout"> Log Out </a> </li>
+      <li> <a href = "logout"> Logout </a> </li>
       <li> <a href = "home"> Homepage </a> </li>
-      <li> <a href = "singlestory"> Create Story </a> </li>
+      <li> <a href = "stories"> All Stories </a> </li>
+      <li> <a href = "singlestory"> Create Story </a></li>
     </ul>
 
     <h1>
-      All Stories
+      {{ storyTitle }}
     </h1>
 
-    <ul>
-        {% for story in stories %}
-        <li><a href="{{ url_for('createdstory', link=story.title)}}">{{ story.title }}</a> created by {{ username }}</li>
-        {% endfor %}
-    </ul>
-  </body>
+    <body>
+      {{ storyContent }}
+    </body>
 
   <footer>
     <p>
