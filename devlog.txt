@@ -84,3 +84,12 @@ AmyS -- 2025-11-02 21:24
 - Current errors:
 - wrong redirect after creating story and going to any page after
 - no stories shown on user homepage
+
+
+EthanS -- 2025:11-03 11:27
+- Fixed story redirect to use a relative path
+- Removed the stories/<name> pages (we are using singlestory/<name> instead)
+-Current errors:
+- Navbar using relative paths incorrectly
+- user homepage problem no stories shown
+
