@@ -15,11 +15,11 @@ cd bigpro_amy_carrie_ethan_owen/
 python3 -m venv venv
 ```
 4) Activate virtual env for Linux or Windows:  
-Linux
+--> Linux
 ```
 . venv/bin/activate
 ```
-Windows
+--> Windows
 ```
 venv\Scripts\activate
 ```
