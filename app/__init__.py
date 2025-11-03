@@ -225,5 +225,5 @@ def createdstorypage(title="", content="", valid = True):
 
 #=====================================================================================#
 if __name__ == "__main__":  # false if this file imported as module
-    #app.debug = True  # enable PSOD, auto-server-restart on code chg
-    app.run(port=8001)
+    app.debug = True  # enable PSOD, auto-server-restart on code chg
+    app.run()
