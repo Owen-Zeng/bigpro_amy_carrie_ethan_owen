@@ -5,12 +5,25 @@
 1) Clone the repo into a local directory:
 ```
 git clone https://github.com/Owen-Zeng/bigpro_amy_carrie_ethan_owen.git
-```  
+```
 2) Enter the app directory:
 ```
 cd bigpro_amy_carrie_ethan_owen/
-```  
-3) Install necessary modules:
+```
+3) Open a virtual environment:
+```
+python3 -m venv venv
+```
+4) Activate virtual env for Linux or Windows:
+Linux
+```
+. venv/bin/activate
+```
+Windows
+```
+venv\Scripts\activate
+```
+5) Install necessary modules:
 ```
 pip install -r requirements.txt
 ```  
