@@ -93,3 +93,21 @@ EthanS  OwenZ-- 2025:11-03 11:27
 -Current errors:
 - user homepage problem no stories shown
 
+CarrieK -- 2025:11-03 14:46
+- added a lil css.... need a theme to continue with css............ please help
+
+CarrieK -- 2025:11-03 22:39
+- External readme review(???????): Launch and install guide improvements:
+    - use pip freeze instead inside the virtual environment to get only the extra installed packages instead of all the python base packages as well
+        - this prevents an error from happening when running pip install inside of a virtual environment
+        - also removes all that bulk........
+- modified requirements.txt to the new package list :)
+- Amy also added new instructions to create a virtual environment and activate on all OS's :))) (should've been in devlog already but forgot...........)
+- changed git clone url to ssh.......
+
+
+EthanS  OwenZ-- 2025:11-03 11:47
+- Fixed some HTML formatting
+- added some groundwork to edit
+-Current errors:
+- all users are said to be authors of all stories

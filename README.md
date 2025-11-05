@@ -4,7 +4,7 @@
 ## Install guide
 1) Clone the repo into a local directory:
 ```
-git clone https://github.com/Owen-Zeng/bigpro_amy_carrie_ethan_owen.git
+git clone git@github.com:Owen-Zeng/bigpro_amy_carrie_ethan_owen.git
 ```
 2) Enter the app directory:
 ```
