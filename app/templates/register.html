@@ -14,56 +14,51 @@
 <html>
 
   <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap" rel="stylesheet">
-    <style>
-      body{
-        font-family: "Edu NSW ACT Foundation", cursive;
-      }
-      h1{
-        font-size: 300%;
-      }
-      ul{
-        list-style-type: none;
-      }
-    </style>
+
+    <title> LOGIN PAGE </title>
+
     <title> REGISTER PAGE </title>
+
   </head>
 
   <body>
-
-    <ul>
-      <li> <a href = "login" style="font-size: 150%"> Log In </a> </li>
-
-    </ul>
-
     <h1>
-      Registration
+
+      Please Make a New account
     </h1>
     <br>
+    <h3>
+      Enter a valid username and password below to proceed.
+    </h3>
+    <h4>
+
+    </h4>
       <form action="/register" method="POST">
-        <h2>Username:</h2> <input type="text" name="id" required>
-        <h2>Email:</h2> <input type="text" name="email" required>
-	<h2>Password:</h2> <input type="password" name="pass" required>
+        <input type="text" name="id">
+        <input type="text" name="pass">
         <br>
         <br>
-        <input type="submit" name="sub1" value="Register">
-        <h5> {{invalid}} </h5>
-      </form>
+         <input type = "submit" name="register" value = "Register">
+        <br>
+      <h5> {{invalid}} </h5>
+
+      Sign up here
+    </h1>
     <br>
+    <h3>
+      Enter your username, email, and password below to proceed.
+    </h3>
+      <form action="/register" method="POST">
+        Username: <input type="text" name="id">
+        Email: <input type="text" name="email">
+	Password: <input type="text" name="pass">
+        <br>
+        <br>
+        <input type="submit" name="sub1">
+      </form>
+
+    <br>
+
   </body>
-  <footer>
-    <p>
-	Emails: <a href="mailto:amys90@nycstudents.net">amys90@nycstudents.net</a>
-	<a href="mailto:carriek3@nycstudents.net">carriek3@nycstudents.net</a>
-	<a href="mailto:ethans201@nycstudents.net">ethans201@nycstudents.net</a>
-	<a href="mailto:owen220@nycstudents.net">owen220@nycstudents.net</a>
-	Telephone: <a href="tel:+123456789">+1 (234) 567-8901</a>
-        Fax: <a href="tel:+123456789">+1 (234) 567-8901</a>
-	Last Revised: tbd, 2024 </br>
-	2025 Stuyvesant Computer Science Department. All rights reserved.
-    </p>
-  </footer>
 
 </html>
