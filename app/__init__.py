@@ -70,7 +70,7 @@ def register():
 # dict of all stories
 storyDict={}
 
-for row in c.execute(f"SELECT storyTitle, content FROM stories"):
+for row in c.execute(f"SELECT storyTitle, content FROM stories;"):
     storyDict.update({row[0]:row[1]})
 
 print(storyDict)
@@ -82,6 +82,14 @@ for row in c.execute("SELECT * FROM user_profile;"):
     users.update({row[0]:row[1]})
 
 print(users)
+
+#dict of authors
+authors={}
+
+for row in c.execute("SELECT * FROM authors;"):
+    authors.update({row[0]:row[1]})
+
+
 
 db.commit() #save changes
 db.close()  #close database
@@ -141,31 +149,41 @@ def logout():
         return logoutpage()
     return redirect(url_for('login'))
 
+#Stories
+#==========================================================================#
+
 @app.route("/stories")
 def stories(name=""):
     if loggedin():
         return storiespage()
     else:
-        return loginpage()
+        return redirect(url_for('login'))
 
 @app.route("/singlestory", methods=['GET', 'POST'])
 def singlestory():
     if loggedin():
         if request.method == 'POST':
             givenTitle = request.form['title']
-
+            
             with sqlite3.connect(DB_FILE) as db:
                 c = db.cursor()
-                if(request.form['title'] == "" or request.form['content'] == ""):
+                if(givenTitle == "" or request.form['content'] == ""):
                     return singlestorypage("", False, "Enter valid content/title")
                 else:
                     c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', '/singlestory/{givenTitle}')")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{givenTitle}')")
                     storyDict[givenTitle] = request.form['content']
+                    authors.update({session['username']:givenTitle})
             session.permanent = True
+            if(session['username'] in authors):
+                hasEdit= f'''
+    <form action="/singlestory/{{givenTitle}}" method="POST">
+    	<input type="text" value="Edit" name=contents>
+      </form>
+      '''
             return redirect(url_for('createdstory', link=givenTitle))
         return singlestorypage()
-    return loginpage()
+    return redirect(url_for('login'))
 
 @app.route("/singlestory/<link>", methods=['GET', 'POST'])
 def createdstory(link):
@@ -184,6 +202,8 @@ def createdstory(link):
 
     session.permanent = True
     return createdstorypage(storyRow[0], storyRow[1]) # we dont have to redirect here
+
+
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -215,10 +235,11 @@ def storiespage():
     return render_template("stories.html", stories=storyDict, username=session['username'])
 
 def singlestorypage(name="", valid = True, error=""):
+
     return render_template("singlestory.html", storyName=name, invalid = error)
 
-def createdstorypage(title="", content="", valid = True):
-    return render_template("createdstory.html", storyTitle=title, storyContent = content)
+def createdstorypage(title="", content="", valid = True,hasEdit=""):
+    return render_template("createdstory.html", storyTitle=title, storyContent = content,edit=hasEdit)
 
 #Navbar below:
 #=====================================================================================#
