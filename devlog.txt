@@ -112,5 +112,11 @@ EthanS  OwenZ-- 2025:11-03 11:47
 -Current errors:
 - all users are said to be authors of all stories
 
+CarrieK -- 2025:11-03 11:47
+- html and css
+
 EthanS  OwenZ-- 2025:11-04 11:47
 - fixed error where whatever user was logged in would be editor of story
+
+CarrieK -- 2025:11-04 11:47
+- html and css
