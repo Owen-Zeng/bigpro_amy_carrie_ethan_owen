@@ -30,24 +30,44 @@
       ul{
         list-style-type: none;
       }
-      div{
+      .main{
         text-align: center; 
         background-color: rgba(255, 255, 255, 0.3);
-        padding-top: 2vh;
-        padding-bottom: 6vh;
+        padding-top: 6.5vh;
+        padding-bottom: 8vh;
         border-radius: 30px;
         margin-top: 8vh;
         margin-left: 10vw;
         margin-right: 10vw;
       }
       footer{
-        background-color: #EB5859;
-        text-align: left;
+        text-align: center;
         color: white;
-        position: fixed;
-        bottom: 0;
-        margin: 0px;
-        padding: 2px;
+        margin-top: 15.5vh;
+      }
+      a{
+        color: #EB5859;
+      }
+      .a{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 0.5vw;
+          padding-right: 0.5vw;
+      }
+      .b{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 1vw;
+          padding-right: 1vw;
+          background-color: #EB5859;
+          border: none;
+          border-radius: 12px;
+      }
+      .register{
+        margin-top: 4vh;
+        text-align: center;
       }
     </style>
     <title> LOGIN PAGE </title>
@@ -59,34 +79,36 @@
       <a href = "register" style="font-size: 150%"> Register </a>
     </nav>
 
-    <div>
+    <div class="main">
     <h1>
       Sign In
     </h1>
       <form action="/login" method="POST">
-        <h2>Username:</h2> <input type="text" name="id" required>
+        <h2>Username:</h2> <input class="a" type="text" name="id" required>
         <br>
-        <h2>Password:</h2> <input type=password name="pass" required>
+        <h2>Password:</h2> <input class="a" type=password name="pass" required>
         <br>
         <br>
-        <input type="submit" name="sub1" value="Sign In">
+        <input class="b" type="submit" name="sub1" value="Sign In">
       </form>
       <h5> {{invalid}} </h5>
     <br>
+    </div>
+    <div class="register">
     <p style="font-size: 110%"> If you don't have an account, click the button below to register. </p>
-    <a href="{{url_for('register')}}"> <button>Register</button> </a>
+    <a href="{{url_for('register')}}"> <button class="b">Register</button> </a>
     </div>
    </body>
 
   <footer>
-      <p>
+      <p style="text-align: center; font-size: 90%">
         Emails: <a href="mailto:amys90@nycstudents.net">amys90@nycstudents.net</a>
         <a href="mailto:carriek3@nycstudents.net">carriek3@nycstudents.net</a>
         <a href="mailto:ethans201@nycstudents.net">ethans201@nycstudents.net</a>
-        <a href="mailto:owen220@nycstudents.net">owen220@nycstudents.net</a></br>
-        Telephone: <a href="tel:+123456789">+1 (234) 567-8901</a></br>
-        Fax: <a href="tel:+123456789">+1 (234) 567-8901</a></br>
-        Last Revised: tbd, 2024 </br>
+        <a href="mailto:owen220@nycstudents.net">owen220@nycstudents.net</a>
+        Telephone: <a href="tel:+123456789">+1 (234) 567-8901</a>
+        Fax: <a href="tel:+123456789">+1 (234) 567-8901</a>
+        Last Revised: tbd, 2024 <br>
         2025 Stuyvesant Computer Science Department. All rights reserved.
      </p>
   </footer>
