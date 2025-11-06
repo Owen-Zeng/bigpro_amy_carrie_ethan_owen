@@ -19,15 +19,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <style>
       body{
-        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://wallpapercave.com/wp/wp5264701.jpg);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(https://wallpapercave.com/wp/wp5264701.jpg);
         font-family: "Lexend", sans-serif;
         color: #ffffff;
+        margin: 0;
       }
       h1{
         font-size: 300%;
       }
       ul{
         list-style-type: none;
+      }
+      div{
+        text-align: center; 
+        background-color: rgba(255, 255, 255, 0.3);
+        padding-top: 2vh;
+        padding-bottom: 6vh;
+        border-radius: 30px;
+        margin-top: 8vh;
+        margin-left: 10vw;
+        margin-right: 10vw;
+      }
+      footer{
+        background-color: #EB5859;
+        text-align: left;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        margin: 0px;
+        padding: 2px;
       }
     </style>
     <title> LOGIN PAGE </title>
@@ -36,9 +56,10 @@
   <body>
     <nav>
       <a href = "register" style="font-size: 150%"> Register </a>
-      <a href = "register" style="font-size: 150%"> Register </a>      
+      <a href = "register" style="font-size: 150%"> Register </a>
     </nav>
 
+    <div>
     <h1>
       Sign In
     </h1>
@@ -54,20 +75,21 @@
     <br>
     <p style="font-size: 110%"> If you don't have an account, click the button below to register. </p>
     <a href="{{url_for('register')}}"> <button>Register</button> </a>
-  </body>
+    </div>
+   </body>
 
   <footer>
       <p>
         Emails: <a href="mailto:amys90@nycstudents.net">amys90@nycstudents.net</a>
         <a href="mailto:carriek3@nycstudents.net">carriek3@nycstudents.net</a>
         <a href="mailto:ethans201@nycstudents.net">ethans201@nycstudents.net</a>
-        <a href="mailto:owen220@nycstudents.net">owen220@nycstudents.net</a>
-        Telephone: <a href="tel:+123456789">+1 (234) 567-8901</a>
-        Fax: <a href="tel:+123456789">+1 (234) 567-8901</a>
+        <a href="mailto:owen220@nycstudents.net">owen220@nycstudents.net</a></br>
+        Telephone: <a href="tel:+123456789">+1 (234) 567-8901</a></br>
+        Fax: <a href="tel:+123456789">+1 (234) 567-8901</a></br>
         Last Revised: tbd, 2024 </br>
         2025 Stuyvesant Computer Science Department. All rights reserved.
      </p>
   </footer>
-
+  </body>
 
 </html>
