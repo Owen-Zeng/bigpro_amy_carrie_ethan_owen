@@ -21,7 +21,7 @@ c = db.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS user_profile(username TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL);")
 
 # story pages table
-c.execute("CREATE TABLE IF NOT EXISTS stories(storyTitle TEXT PRIMARY KEY NOT NULL, content TEXT, previousEdit TEXT, storyLink TEXT);")
+c.execute("CREATE TABLE IF NOT EXISTS stories(storyTitle TEXT PRIMARY KEY NOT NULL, content TEXT, previousEdit TEXT, storyLink TEXT, author TEXT);")
 
 # author name table with story title
 c.execute("CREATE TABLE IF NOT EXISTS authors(username TEXT, storyTitle TEXT);")
@@ -83,13 +83,13 @@ for row in c.execute("SELECT * FROM user_profile;"):
 
 print(users)
 
-#dict of authors
+#dict of editors and authors
+editors={}
 authors={}
-
 for row in c.execute("SELECT * FROM authors;"):
+    editors.update({row[0]:row[1]})
+for row in c.execute("SELECT storyTitle, author FROM stories;"):
     authors.update({row[0]:row[1]})
-
-
 
 db.commit() #save changes
 db.close()  #close database
@@ -164,18 +164,19 @@ def singlestory():
     if loggedin():
         if request.method == 'POST':
             givenTitle = request.form['title']
-            
+
             with sqlite3.connect(DB_FILE) as db:
                 c = db.cursor()
                 if(givenTitle == "" or request.form['content'] == ""):
                     return singlestorypage("", False, "Enter valid content/title")
                 else:
-                    c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', '/singlestory/{givenTitle}')")
+                    c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', '/singlestory/{givenTitle}', '{session['username']}');")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{givenTitle}')")
                     storyDict[givenTitle] = request.form['content']
-                    authors.update({session['username']:givenTitle})
+                    editors.update({session['username']:givenTitle})
+                    authors.update({givenTitle:session['username']})
             session.permanent = True
-            if(session['username'] in authors):
+            if(session['username'] in editors):
                 hasEdit= f'''
     <form action="/singlestory/{{givenTitle}}" method="POST">
     	<input type="text" value="Edit" name=contents>
@@ -203,7 +204,8 @@ def createdstory(link):
     session.permanent = True
     return createdstorypage(storyRow[0], storyRow[1]) # we dont have to redirect here
 
-
+def author(storyName):
+    return authors.get(storyName)
 
 #WEBPAGE ROUTING#
 #====================================================================================#
@@ -232,7 +234,8 @@ def registerpage(valid = True, error=""):
 
 # returns the stories page
 def storiespage():
-    return render_template("stories.html", stories=storyDict, username=session['username'])
+
+    return render_template("stories.html", stories=authors)
 
 def singlestorypage(name="", valid = True, error=""):
 
