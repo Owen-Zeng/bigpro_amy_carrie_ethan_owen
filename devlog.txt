@@ -123,3 +123,6 @@ CarrieK -- 2025:11-04 11:47
 
 CarrieK -- 2025:11-04 13:18
 - css css css css css css css css
+
+CarrieK -- 2025:11-04 14:45
+- finished css for register and login i think!!!!!!!!!!!!!!!! yay!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
