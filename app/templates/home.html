@@ -27,26 +27,39 @@ time spent: 1.5
       h1{
         font-size: 300%;
       }
+      h2{
+        font-size: 200%;
+      }
       ul{
         list-style-type: none;
       }
-      .main{
+      .header{
         text-align: center;
         background-color: rgba(255, 255, 255, 0.3);
-        padding-top: 2.5vh;
-        padding-bottom: 4vh;
+        padding-top: 0.1vh;
+        padding-bottom: 0.2vh;
         border-radius: 30px;
         margin-top: 8vh;
         margin-left: 10vw;
         margin-right: 10vw;
       }
+      .main{
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding-top: 1.5vh;
+        padding-bottom: 2vh;
+        border-radius: 30px;
+        margin-top: 4vh;
+        margin-left: 10vw;
+        margin-right: 10vw;
+      }
       footer{
         text-align: center;
-        color: #5E6E73;
-        margin-top: 7.4vh;
+        color: #3C516C;
+        margin-top: 8vh;
       }
       a{
-        color: #EB5859;
+        color: #94B5C2;
       }
       .a{
           font-family: "Lexend", sans-serif;
@@ -70,7 +83,7 @@ time spent: 1.5
         background-color: #D08C5C;
       }
       .register{
-        margin-top: 4vh;
+        margin-top: 12vh;
         text-align: center;
       }
       nav{
@@ -92,6 +105,13 @@ time spent: 1.5
         color: #ffffff;
         text-decoration: none;
       }
+      .d:hover{
+        color: #94B5C2
+      }
+      .rate{
+        text-align: center;
+        
+      }
     </style>
   </head>
 
@@ -101,12 +121,15 @@ time spent: 1.5
       <button class="c"> <a class="d" href = "stories"> Stories Page </a> </button>
       <button class="c"> <a class="d" href = "singlestory"> Create Story </a> </button>
     </nav>
+    <div class="header">
     <h1>
       {{username}}'s Homepage
     </h1>
-    <br>
+    </div>
+    <div class="main">
     <h2>
         Your stories:
+    </h2>
 
         <ul>
             {% for story in edited_stories %}
@@ -123,19 +146,16 @@ time spent: 1.5
             <li>
         <ul>
         -->
-    </h2>
-    <h3>
-        We value your service.
-    </h3>
-
-    <h4>
-		Please rate us a 5 stars on Piazza.
-    </h4>
-
+    </div>
+    <p class="rate">
+		<b>Please rate us  5 stars on Piazza.</b>
+    </p>
     <br>
+    <div class="register">
     <p> If you would like to logout, please click below. </p>
 	<form action="/logout" method="POST">
-		<input type="submit" value="Log Out">
+		<input class="b" type="submit" value="Log Out">
+    </div>
   </body>
 
 	<footer>
