@@ -17,12 +17,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       body{
         background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(https://wallpapercave.com/wp/wp5264701.jpg);
         font-family: "Lexend", sans-serif;
         color: #ffffff;
         margin: 0;
+        padding: 2px;
+        box-sizing: border-box;
       }
       h1{
         font-size: 300%;
@@ -31,7 +34,7 @@
         list-style-type: none;
       }
       .main{
-        text-align: center; 
+        text-align: center;
         background-color: rgba(255, 255, 255, 0.3);
         padding-top: 6.5vh;
         padding-bottom: 8vh;
@@ -42,8 +45,8 @@
       }
       footer{
         text-align: center;
-        color: #2F414C;
-        margin-top: 10.2vh;
+        color: white;
+        margin-top: 15.5vh;
       }
       a{
         color: #EB5859;
@@ -64,32 +67,25 @@
           background-color: #EB5859;
           border: none;
           border-radius: 12px;
-          color: #0F1C23;
-      }
-      .b:hover{
-        background-color: #D08C5C;
       }
       .register{
         margin-top: 4vh;
         text-align: center;
       }
-      nav{
-        background-image: linear-gradient(rgba(15, 30, 35, 0.9), rgba(15, 30, 35, 0.9)), url(https://media1.tenor.com/m/NpfrJKok9CcAAAAd/starry-night-stars.gif);
-        padding-bottom: 2vh;
-        padding-left: 2vw;
-        padding-right: 2vw;
-      }
-      .c{
-        color: #ffffff;
-        padding-top: 1.5vh;
-        padding-right: 2vw;
-        border: none;
-        font-family: "Lexend", sans-serif;
-        font-size: 130%;
-        background-color: rgba(0, 0, 0, 0);
-      }
-      .c:hover{
+      a{
         color: #EB5859;
+      }
+      nav{
+        background-color: #EB5859;
+        color: white;
+        padding: 0;
+        margin: 0;
+      }
+      nav a{
+        color: white;
+      }
+      li a:hover{
+
       }
     </style>
     <title> LOGIN PAGE </title>
@@ -97,7 +93,10 @@
 
   <body>
     <nav>
-      <a href = "register"> <button class="c"> Register </button> </a>
+      <ul>
+        <li><a href = "register" style="font-size: 150%"> Register </a></li>
+        <li><a href = "register" style="font-size: 150%"> Register </a></li>
+      </ul>
     </nav>
 
     <div class="main">
@@ -129,7 +128,7 @@
         <a href="mailto:owen220@nycstudents.net">owen220@nycstudents.net</a>
         Telephone: <a href="tel:+123456789">+1 (234) 567-8901</a>
         Fax: <a href="tel:+123456789">+1 (234) 567-8901</a>
-        Last Revised: tbd, 2024 <br>
+        Last Revised: tbd, 2024 </br>
         2025 Stuyvesant Computer Science Department. All rights reserved.
      </p>
   </footer>
