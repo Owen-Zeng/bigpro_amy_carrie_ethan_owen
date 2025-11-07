@@ -12,17 +12,95 @@ time spent: 1.5
 
 <html>
 
-  <ul>
-    <li> <a href = "logout"> Log Out </a> </li>
-    <li> <a href = "stories"> Stories Page </a> </li>
-    <li> <a href = "singlestory"> Create Story </a> </li>
-  </ul>
-
   <head>
     <title> {{username}} PAGE </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+      body{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(https://wallpapercave.com/wp/wp4504931.png);
+        font-family: "Lexend", sans-serif;
+        color: #ffffff;
+        margin: 0;
+      }
+      h1{
+        font-size: 300%;
+      }
+      ul{
+        list-style-type: none;
+      }
+      .main{
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding-top: 2.5vh;
+        padding-bottom: 4vh;
+        border-radius: 30px;
+        margin-top: 8vh;
+        margin-left: 10vw;
+        margin-right: 10vw;
+      }
+      footer{
+        text-align: center;
+        color: #5E6E73;
+        margin-top: 7.4vh;
+      }
+      a{
+        color: #EB5859;
+      }
+      .a{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 0.5vw;
+          padding-right: 0.5vw;
+      }
+      .b{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 1vw;
+          padding-right: 1vw;
+          background-color: #EB5859;
+          border: none;
+          border-radius: 12px;
+          color: #0F1C23;
+      }
+      .b:hover{
+        background-color: #D08C5C;
+      }
+      .register{
+        margin-top: 4vh;
+        text-align: center;
+      }
+      nav{
+        background-image: linear-gradient(rgba(2, 2, 3, 0.8), rgba(2, 2, 3, 0.8)),  url(https://media1.tenor.com/m/NpfrJKok9CcAAAAd/starry-night-stars.gif);
+        padding-bottom: 2vh;
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+      .c{
+        color: #ffffff;
+        padding-top: 1.5vh;
+        padding-right: 2vw;
+        border: none;
+        font-family: "Lexend", sans-serif;
+        font-size: 130%;
+        background-color: rgba(0, 0, 0, 0);
+      }
+      .d{
+        color: #ffffff;
+        text-decoration: none;
+      }
+    </style>
   </head>
 
   <body>
+    <nav>
+      <button class="c"> <a class="d" href = "logout"> Log Out </a> </button> 
+      <button class="c"> <a class="d" href = "stories"> Stories Page </a> </button>
+      <button class="c"> <a class="d" href = "singlestory"> Create Story </a> </button>
+    </nav>
     <h1>
       {{username}}'s Homepage
     </h1>
