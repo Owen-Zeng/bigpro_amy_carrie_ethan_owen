@@ -22,7 +22,7 @@
       <li> <a href = "../logout"> Log Out </a> </li>
       <li> <a href = "../home"> Homepage </a> </li>
       <li> <a href = "../stories"> All Stories </a> </li>
-      <li> <a href = "singlestory"> Create Story </a></li>
+      <li> <a href = "../singlestory"> Create Story </a></li>
     </ul>
 
     <h1>
@@ -31,7 +31,9 @@
 
     <body>
       {{ storyContent }}
-      {{hasEdit}}
+      <form action="/singlestory/{{storyTitle}}" method="POST">
+          <input type={{edit}} value="Edit" name="edit">
+      </form>
     </body>
 
   <footer>

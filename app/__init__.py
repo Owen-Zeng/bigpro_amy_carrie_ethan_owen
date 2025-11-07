@@ -176,12 +176,6 @@ def singlestory():
                     editors.update({session['username']:givenTitle})
                     authors.update({givenTitle:session['username']})
             session.permanent = True
-            if(session['username'] in editors):
-                hasEdit= f'''
-    <form action="/singlestory/{{givenTitle}}" method="POST">
-    	<input type="text" value="Edit" name=contents>
-      </form>
-      '''
             return redirect(url_for('createdstory', link=givenTitle))
         return singlestorypage()
     return redirect(url_for('login'))
@@ -195,6 +189,15 @@ def createdstory(link):
 
         c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
         authorRow = c.fetchone()
+        hasEdit="hidden"
+        if(session['username'] not in editors):
+            hasEdit="text"
+        elif(session['username']!=authors[link]):
+            recentEdit=request.form['edit']
+            updatedStory=storyDict[givenTitle] + recentEdit
+            c.execute(f"UPDATE stories SET content = '{updatedStory}' WHERE storyTitle = '{link}';")
+            c.execute(f"UPDATE stories SET recentEdit = '{recentEdit}' WHERE storyTitle = '{link}';")
+            c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{link}';")
 
         if (storyRow is None):
             return "Story doesn't exist"
@@ -202,7 +205,7 @@ def createdstory(link):
         print(storyDict)
 
     session.permanent = True
-    return createdstorypage(storyRow[0], storyRow[1]) # we dont have to redirect here
+    return createdstorypage(storyRow[0], storyRow[1], True, hasEdit) # we dont have to redirect here
 
 def author(storyName):
     return authors.get(storyName)
