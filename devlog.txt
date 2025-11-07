@@ -129,3 +129,6 @@ CarrieK -- 2025:11-04 14:45
 
 AmyS -- 2025:11-06 22:08
 - added to css for navbar and footer; fixed merge error from class
+
+OwenZ -- 2025:11-07 11:44
+- trying to add a list of stories that the user has edited to their homepage

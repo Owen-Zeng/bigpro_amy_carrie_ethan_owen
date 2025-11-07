@@ -136,8 +136,13 @@ def login():
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
+    edittedStories = {}
+    for key, value in editors.items():
+        if (value == session['username']):
+            edittedStories.update({key, value})
+
     if loggedin():
-        return homepage(session['username'])
+        return homepage(session['username'], edittedStories)
     else:
         return redirect(url_for('register'))
 
@@ -213,8 +218,8 @@ def author(storyName):
 #WEBPAGE ROUTING#
 #====================================================================================#
 # returns the home page html template
-def homepage(user):
-    return render_template('home.html',username=user,)
+def homepage(user, edits):
+    return render_template('home.html',username=user, edited_stories = edits )
 
 # if the username is valid, return the login page html template
 # else, return the same page but with the incorrect username/password text
