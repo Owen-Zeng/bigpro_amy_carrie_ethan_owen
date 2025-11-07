@@ -121,10 +121,10 @@ EthanS  OwenZ-- 2025:11-04 11:47
 CarrieK -- 2025:11-04 11:47
 - html and css
 
-CarrieK -- 2025:11-04 13:18
+CarrieK -- 2025:11-06 13:18
 - css css css css css css css css
 
-CarrieK -- 2025:11-04 14:45
+CarrieK -- 2025:11-06 14:45
 - finished css for register and login i think!!!!!!!!!!!!!!!! yay!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 AmyS -- 2025:11-06 22:08
@@ -132,3 +132,6 @@ AmyS -- 2025:11-06 22:08
 
 OwenZ -- 2025:11-07 11:44
 - trying to add a list of stories that the user has edited to their homepage
+
+CarrieK -- 2025:11-07 11:47
+- csscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscsscss
