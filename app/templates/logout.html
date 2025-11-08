@@ -13,33 +13,125 @@ time spent: 1.5
 <html>
   <head>
     <title> Logged Out </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+      body{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(https://wallpapercave.com/wp/wp5264701.jpg);
+        font-family: "Lexend", sans-serif;
+        color: #ffffff;
+        margin: 0;
+      }
+      h1{
+        font-size: 300%;
+      }
+      ul{
+        list-style-type: none;
+      }
+      .main{
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding-top: 6.5vh;
+        padding-bottom: 8vh;
+        border-radius: 30px;
+        margin-top: 8vh;
+        margin-left: 10vw;
+        margin-right: 10vw;
+      }
+      footer{
+        text-align: center;
+        color: #5E6E73;
+        margin-top: 10.2vh;
+      }
+      a{
+        color: #EB5859;
+      }
+      a:hover{
+        color: #D08C5C;
+      }
+      .a{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 0.5vw;
+          padding-right: 0.5vw;
+      }
+      .b{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 1vw;
+          padding-right: 1vw;
+          background-color: #EB5859;
+          border: none;
+          border-radius: 12px;
+          color: #0F1C23;
+      }
+      .b:hover{
+        background-color: #D08C5C;
+      }
+      .register{
+        margin-top: 4vh;
+        text-align: center;
+      }
+      nav{
+        background-image: linear-gradient(rgba(15, 30, 35, 0.8), rgba(15, 30, 35, 0.8)), url(https://media1.tenor.com/m/NpfrJKok9CcAAAAd/starry-night-stars.gif);
+        padding-bottom: 2vh;
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+      .c{
+        color: #ffffff;
+        padding-top: 1.5vh;
+        padding-right: 2vw;
+        border: none;
+        font-family: "Lexend", sans-serif;
+        font-size: 130%;
+        background-color: rgba(0, 0, 0, 0);
+      }
+      .c:hover{
+        color: #EB5859;
+      }
+      .d{
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .d:hover{
+        color: #EB5859;
+      }
+      .rate{
+        text-align: center;
+      }
+    </style>
   </head>
 
   <body>
-    <ul>
-      <li> <a href = "login"> Log In </a> </li>
-      <li> <a href = "register"> Register </a> </li>
-    </ul>
-
+    <nav>
+      <button class="c"> <a class="d" href = "login"> Log In </a> </button>
+      <button class="c"> <a class="d" href = "register"> Register </a> </button>
+    </nav>
+    <div class="main">
     <h1>
-      THIS IS THE LOGOUT PAGE. YOU HAVE BEEN LOGGED OUT.
-		Thank you for your time on this page, created by <i> Team bipro: </i>
-      <br>
-      we are pro
+      Logged out successfully
     </h1>
     <br>
     <h2>
-        We value your services and hope to see you again soon
+        We appreciate your visit! Please come again :)
+        <br>
+        - bigpro dev team
     </h2>
-
-    <h3>
-		Please rate us on Piazza
-    </h3>
-
     <br>
+    <p>
+		<b>Please rate us 5 stars on Piazza (pretty please)</b>
+    </p>
+    </div>
+    <br>
+    <div class="register">
     <p> If you would like to re-sign in, please click below </p>
 	<form action="/logout" method="POST">
-		<input type="submit" value="Sign In">
+		<input class="b" type="submit" value="Sign In">
+    </div>
   </form>
   </body>
 
