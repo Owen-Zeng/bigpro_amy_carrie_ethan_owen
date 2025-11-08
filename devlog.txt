@@ -147,6 +147,7 @@ CarrieK -- 2025:11-08 13:15
 
 EthanS -- 2025:11-08-14:10
 - added an edit functionality
+-fixed being able to overwrite stories by choosing the same title
 -Errors:
 -doesnt add edits to the next line, unfortunately
 -The default value of "edit" gets added to the user's edit if you don't manually get rid of it sadly
