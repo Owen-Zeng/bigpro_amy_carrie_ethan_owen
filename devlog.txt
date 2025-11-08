@@ -144,3 +144,9 @@ CarrieK -- 2025:11-07 23:07
 
 CarrieK -- 2025:11-08 13:15
 - i think css is done dont trust me on that one though  
+
+EthanS -- 2025:11-08-14:10
+- added an edit functionality
+-Errors:
+-doesnt add edits to the next line, unfortunately
+-The default value of "edit" gets added to the user's edit if you don't manually get rid of it sadly
