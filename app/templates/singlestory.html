@@ -16,26 +16,135 @@
 
   <head>
     <title> Stories </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+      body{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(https://wallpapercave.com/wp/wp4504931.png);
+        font-family: "Lexend", sans-serif;
+        color: #ffffff;
+        margin: 0;
+      }
+      h1{
+        font-size: 300%;
+      }
+      h2{
+        font-size: 200%;
+      }
+      ul{
+        list-style-type: none;
+      }
+      .header{
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding-top: 0.1vh;
+        padding-bottom: 0.2vh;
+        border-radius: 30px;
+        margin-top: 8vh;
+        margin-left: 10vw;
+        margin-right: 10vw;
+      }
+      .main{
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding-top: 1.5vh;
+        padding-bottom: 2vh;
+        border-radius: 30px;
+        margin-top: 4vh;
+        margin-left: 10vw;
+        margin-right: 10vw;
+      }
+      footer{
+        text-align: center;
+        color: #3C516C;
+        margin-top: 8vh;
+      }
+      a{
+        color: #94B5C2;
+      }
+      .a{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 0.5vw;
+          padding-right: 0.5vw;
+          width: 50vw;
+      }
+      .a2{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 0.5vw;
+          padding-right: 0.5vw;
+          width: 20vw;
+      }
+      .b{
+          font-family: "Lexend", sans-serif;
+          padding-top: 0.5vh;
+          padding-bottom: 0.5vh;
+          padding-left: 1vw;
+          padding-right: 1vw;
+          background-color: #3C516C;
+          border: none;
+          border-radius: 12px;
+          color: #0F1C23;
+      }
+      .b:hover{
+        background-color: #94B5C2;
+      }
+      .register{
+        margin-top: 12vh;
+        text-align: center;
+      }
+      nav{
+        background-image: linear-gradient(rgba(2, 2, 3, 0.8), rgba(2, 2, 3, 0.8)),  url(https://media1.tenor.com/m/NpfrJKok9CcAAAAd/starry-night-stars.gif);
+        padding-bottom: 2vh;
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+      .c{
+        color: #ffffff;
+        padding-top: 1.5vh;
+        padding-right: 2vw;
+        border: none;
+        font-family: "Lexend", sans-serif;
+        font-size: 130%;
+        background-color: rgba(0, 0, 0, 0);
+      }
+      .d{
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .d:hover{
+        color: #94B5C2
+      }
+      .rate{
+        text-align: center;
+        
+      }
+    </style>
   </head>
 
   <body>
-    <ul>
-      <li> <a href = "logout"> Logout </a> </li>
-      <li> <a href = "home"> Homepage </a> </li>
-      <li> <a href = "stories"> All Stories </a> </li>
-    </ul>
-
+    <nav>
+      <button class="c"> <a class="d" href = "logout"> Logout </a> </button>
+      <button class="c"> <a class="d" href = "home"> Homepage </a> </button>
+      <button class="c"> <a class="d" href = "stories"> All Stories </a> </button>
+    </nav>
+    <div class="main">
     <h1>
       Create Story
     </h1>
-
       <form action="/singlestory" method="POST">
-        Title: <input type="text" name="title" required></br></br>
-        Content: <input type="text" name="content" required></br></br>
+        <h2>Title:</h2> <input class="a2" type="text" name="title" required></br></br>
+        <h2>Content:<h2> 
+        <textarea class="a" type="text" name="content" rows="10" required> </textarea> 
+        </br></br>
         <h5> {{invalid}} </h5>
-        <input type="submit" name="sub1" value="Submit">
+        <input class="b" type="submit" name="sub1" value="Submit">
       </form>
-
+     </div>
   </body>
 
   <footer>
