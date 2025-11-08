@@ -174,6 +174,8 @@ def singlestory():
                 c = db.cursor()
                 if(givenTitle == "" or request.form['content'] == ""):
                     return singlestorypage("", False, "Enter valid content/title")
+                if(givenTitle in storyDict):
+                    return singlestorypage("", False, "That title is taken")
                 else:
                     c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', '/singlestory/{givenTitle}', '{session['username']}');")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{givenTitle}')")
@@ -189,26 +191,27 @@ def singlestory():
 def createdstory(link):
     with sqlite3.connect(DB_FILE) as db:
         c = db.cursor()
-        c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
-        storyRow = c.fetchone()
-
-        c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
-        authorRow = c.fetchone()
+       
         hasEdit="hidden"
         if(session['username'] not in editors):
             hasEdit="text"
-        elif(session['username']!=authors[link]):
-            recentEdit=request.form['edit']
-            updatedStory=storyDict[givenTitle] + recentEdit
-            c.execute(f"UPDATE stories SET content = '{updatedStory}' WHERE storyTitle = '{link}';")
-            c.execute(f"UPDATE stories SET recentEdit = '{recentEdit}' WHERE storyTitle = '{link}';")
-            c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{link}';")
-
+            if(session['username']!=authors[link]):
+                if request.method == 'POST':
+                    recentEdit=request.form['edit']
+                    updatedStory=storyDict[link] + "\n" + recentEdit
+                    c.execute(f"UPDATE stories SET content = '{updatedStory}' WHERE storyTitle = '{link}';")
+                    c.execute(f"UPDATE stories SET previousEdit = '{recentEdit}' WHERE storyTitle = '{link}';")
+                    c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{link}');")
+                    hasEdit="hidden"
+        c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
+        storyRow = c.fetchone()
+        c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
+        authorRow = c.fetchone()
         if (storyRow is None):
             return "Story doesn't exist"
         storyDict[storyRow[0]] = storyRow[1]
         print(storyDict)
-
+        
     session.permanent = True
     return createdstorypage(storyRow[0], storyRow[1], True, hasEdit) # we dont have to redirect here
 
