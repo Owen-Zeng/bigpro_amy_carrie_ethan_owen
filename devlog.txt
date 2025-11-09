@@ -160,3 +160,8 @@ OwenZ -- 2025:11-09:-03:55
 -There seems like some inconsistent edit perms, if you exit the page, you can edit again upon entering despite editting previously.
 -Sometimes, I am unable to edit no matter what, might need to test this.
 -Doesn't only show last lastest edit if you can still edit.
+
+EthanS -- 2025:11-09-13:19
+- fixed the edit functionality noted by owen
+-Errors:
+- doesnt show latest edit
