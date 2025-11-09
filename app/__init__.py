@@ -137,9 +137,13 @@ def login():
 @app.route("/home", methods=['GET', 'POST'])
 def home():
     edittedStories = {}
-    for key, value in editors.items():
+    for key, value in authors.items():
         if (value == session['username']):
-            edittedStories.update({key, value})
+            edittedStories.update({key: value})
+    # print(authors)
+    # print(edittedStories)
+    # print(editors) 
+
 
     if loggedin():
         return homepage(session['username'], edittedStories)
@@ -193,8 +197,10 @@ def createdstory(link):
         c = db.cursor()
        
         hasEdit="hidden"
+        canEdit = ""
         if(session['username'] not in editors):
             hasEdit="text"
+            canEdit = "Edit the Story"
             if(session['username']!=authors[link]):
                 if request.method == 'POST':
                     recentEdit=request.form['edit']
@@ -203,6 +209,7 @@ def createdstory(link):
                     c.execute(f"UPDATE stories SET previousEdit = '{recentEdit}' WHERE storyTitle = '{link}';")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{link}');")
                     hasEdit="hidden"
+                    canEdit=""
         c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
         storyRow = c.fetchone()
         c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
@@ -213,7 +220,7 @@ def createdstory(link):
         print(storyDict)
         
     session.permanent = True
-    return createdstorypage(storyRow[0], storyRow[1], True, hasEdit) # we dont have to redirect here
+    return createdstorypage(storyRow[0], storyRow[1], True, hasEdit, canEdit) # we dont have to redirect here
 
 def author(storyName):
     return authors.get(storyName)
@@ -252,8 +259,8 @@ def singlestorypage(name="", valid = True, error=""):
 
     return render_template("singlestory.html", storyName=name, invalid = error)
 
-def createdstorypage(title="", content="", valid = True,hasEdit=""):
-    return render_template("createdstory.html", storyTitle=title, storyContent = content,edit=hasEdit)
+def createdstorypage(title="", content="", valid = True,hasEdit="", canEdit = ""):
+    return render_template("createdstory.html", storyTitle=title, storyContent = content,edit=hasEdit, Canedit = canEdit)
 
 #Navbar below:
 #=====================================================================================#

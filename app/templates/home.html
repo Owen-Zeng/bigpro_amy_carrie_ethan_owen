@@ -17,6 +17,8 @@ time spent: 1.5
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+
     <style>
       body{
         background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(https://wallpapercave.com/wp/wp4504931.png);
@@ -133,16 +135,20 @@ time spent: 1.5
     </div>
     <div class="main">
     <h2>
-        Your stories:
-    </h2>
 
         <ul>
+        Your stories:
             {% for story in edited_stories %}
             <li><a href="{{ url_for('createdstory', link=story) }}">{{ story }}</a> created by {{edited_stories[story]}}
             {% endfor %}
 
             </li>
         </ul>
+        
+    </h2>
+
+        
+
 
        <!--
         <ul>
