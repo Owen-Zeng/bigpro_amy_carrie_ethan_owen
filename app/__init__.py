@@ -105,7 +105,7 @@ for row in c.execute("SELECT storyTitle, author FROM stories;"):
 
 previousEdit={}
 for row in c.execute(f"SELECT storyTitle, previousEdit FROM stories;"):
-    previousEdit.update({row[0],row[1]})
+    previousEdit.update({row[0]:row[1]})
 db.commit() #save changes
 db.close()  #close database
 
@@ -242,13 +242,14 @@ def createdstory(link):
         c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
         authorRow = c.fetchone()
         if (storyRow is None):
-            return "Story doesn't exist"
+           return "Story doesn't exist"
         storyDict[storyRow[0]] = storyRow[1]
-        if(seeLast):
-            storyRow[1]=previousEdit[link]
+       
         #print(storyDict)
         
     session.permanent = True
+    if(seeLast):
+        return createdstorypage(storyRow[0], previousEdit[link], True, hasEdit, canEdit)
     return createdstorypage(storyRow[0], storyRow[1], True, hasEdit, canEdit) # we dont have to redirect here
 
 def author(storyName):
