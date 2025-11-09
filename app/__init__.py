@@ -65,7 +65,7 @@ def register():
     return registerpage()
 
 
-#LOGIN FUNCTIONALITY#
+#converting database data to dicts
 #====================================================================================#
 # dict of all stories
 storyDict={}
@@ -91,19 +91,27 @@ for row in c.execute("SELECT * FROM authors;"):
     if(row[1] not in editors):
         editors.update({row[1]:[row[0]]})
     else:
-        
+
         newRow=editors[row[1]]
         #print(newRow)
         if(row[0] not in newRow):
             newRow.append(row[0])
         editors.update({row[1]:newRow})
-        print("this is", editors)
+
+        
 for row in c.execute("SELECT storyTitle, author FROM stories;"):
     authors.update({row[0]:row[1]})
 
+
+previousEdit={}
+for row in c.execute(f"SELECT storyTitle, previousEdit FROM stories;"):
+    previousEdit.update({row[0],row[1]})
 db.commit() #save changes
 db.close()  #close database
-#temporary dictionary to represent pulling from SQLITE
+
+#LOGIN FUNCTIONALITY#
+#====================================================================================#
+
 
 # if the username exists in database, return True
 # else return False
@@ -208,12 +216,13 @@ def createdstory(link):
         c = db.cursor()
        
         hasEdit="hidden"
-
-        print(f"this is editors{link}", editors[link])
-   
+        canEdit=""
+        seeLast=False
         if(session['username'] not in editors[link]):
+            seeLast=True
             if(session['username']!=authors[link]):
                 hasEdit="text"
+                canEdit="Edit the Story"
                 if request.method == 'POST':
                     recentEdit=request.form['edit']
                     updatedStory=storyDict[link] + "\n" + recentEdit
@@ -226,7 +235,8 @@ def createdstory(link):
                     temp.append(session['username'])
                     editors.update({link:temp})
                     hasEdit="hidden"
-                    canEdit="Edit the Story"
+                    canEdit=""
+        
         c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
         storyRow = c.fetchone()
         c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
@@ -234,6 +244,8 @@ def createdstory(link):
         if (storyRow is None):
             return "Story doesn't exist"
         storyDict[storyRow[0]] = storyRow[1]
+        if(seeLast):
+            storyRow[1]=previousEdit[link]
         #print(storyDict)
         
     session.permanent = True
