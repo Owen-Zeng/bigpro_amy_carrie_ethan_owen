@@ -73,7 +73,7 @@ storyDict={}
 for row in c.execute(f"SELECT storyTitle, content FROM stories;"):
     storyDict.update({row[0]:row[1]})
 
-print(storyDict)
+#print(storyDict)
 
 # dict of usernames:password
 users={}
@@ -81,13 +81,23 @@ users={}
 for row in c.execute("SELECT * FROM user_profile;"):
     users.update({row[0]:row[1]})
 
-print(users)
+#print(users)
 
 #dict of editors and authors
 editors={}
 authors={}
+count=0
 for row in c.execute("SELECT * FROM authors;"):
-    editors.update({row[0]:row[1]})
+    if(row[1] not in editors):
+        editors.update({row[1]:[row[0]]})
+    else:
+        
+        newRow=editors[row[1]]
+        #print(newRow)
+        if(row[0] not in newRow):
+            newRow.append(row[0])
+        editors.update({row[1]:newRow})
+        print("this is", editors)
 for row in c.execute("SELECT storyTitle, author FROM stories;"):
     authors.update({row[0]:row[1]})
 
@@ -137,9 +147,14 @@ def login():
 @app.route("/home", methods=['GET', 'POST'])
 def home():
     edittedStories = {}
+    #HEY OWEN SO BASICALLY EDITORS IS UNIQUE MEANING EVERY STORY ONLY HAS ONE EDITOR WHICH IS STUPID SO I MADE
+    #EDITORS VALUE BE A LIST OF ALL EDITORS AND SO LIEK YEAH
+    
     for key, value in editors.items():
-        if (value == session['username']):
-            edittedStories.update({key, value})
+        for editor in value:
+            if (editor == session['username']):
+                
+                edittedStories.update({key:authors[key]})
 
     if loggedin():
         return homepage(session['username'], edittedStories)
@@ -179,8 +194,8 @@ def singlestory():
                 else:
                     c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', '/singlestory/{givenTitle}', '{session['username']}');")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{givenTitle}')")
-                    storyDict[givenTitle] = request.form['content']
-                    editors.update({session['username']:givenTitle})
+                    storyDict[givenTitle] = request.form['content']        
+                    editors.update({givenTitle:session['username']})
                     authors.update({givenTitle:session['username']})
             session.permanent = True
             return redirect(url_for('createdstory', link=givenTitle))
@@ -193,15 +208,23 @@ def createdstory(link):
         c = db.cursor()
        
         hasEdit="hidden"
-        if(session['username'] not in editors):
-            hasEdit="text"
+        print(f"this is editors{link}", editors[link])
+   
+        if(session['username'] not in editors[link]):
+            
             if(session['username']!=authors[link]):
+                hasEdit="text"
                 if request.method == 'POST':
                     recentEdit=request.form['edit']
                     updatedStory=storyDict[link] + "\n" + recentEdit
                     c.execute(f"UPDATE stories SET content = '{updatedStory}' WHERE storyTitle = '{link}';")
                     c.execute(f"UPDATE stories SET previousEdit = '{recentEdit}' WHERE storyTitle = '{link}';")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{link}');")
+                    temp=[]
+                    editors[link]=temp
+                    print(temp)
+                    temp.append(session['username'])
+                    editors.update({link:temp})
                     hasEdit="hidden"
         c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
         storyRow = c.fetchone()
@@ -210,7 +233,7 @@ def createdstory(link):
         if (storyRow is None):
             return "Story doesn't exist"
         storyDict[storyRow[0]] = storyRow[1]
-        print(storyDict)
+        #print(storyDict)
         
     session.permanent = True
     return createdstorypage(storyRow[0], storyRow[1], True, hasEdit) # we dont have to redirect here
