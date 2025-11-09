@@ -164,4 +164,7 @@ OwenZ -- 2025:11-09:-03:55
 EthanS -- 2025:11-09-13:19
 - fixed the edit functionality noted by owen
 -Errors:
-- doesnt show latest edit
+- doesnt show only latest edit if you havent edited yet
+
+EthanS -- 2025:11-09-13:35
+- fixed the display only the last edit thing if u havent edited
