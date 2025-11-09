@@ -208,10 +208,10 @@ def createdstory(link):
         c = db.cursor()
        
         hasEdit="hidden"
+
         print(f"this is editors{link}", editors[link])
    
         if(session['username'] not in editors[link]):
-            
             if(session['username']!=authors[link]):
                 hasEdit="text"
                 if request.method == 'POST':
@@ -226,6 +226,7 @@ def createdstory(link):
                     temp.append(session['username'])
                     editors.update({link:temp})
                     hasEdit="hidden"
+                    canEdit="Edit the Story"
         c.execute(f"SELECT storyTitle, content FROM stories WHERE storyTitle = '{link}'")
         storyRow = c.fetchone()
         c.execute(f"SELECT username FROM authors WHERE storyTitle = '{link}'")
@@ -236,7 +237,7 @@ def createdstory(link):
         #print(storyDict)
         
     session.permanent = True
-    return createdstorypage(storyRow[0], storyRow[1], True, hasEdit) # we dont have to redirect here
+    return createdstorypage(storyRow[0], storyRow[1], True, hasEdit, canEdit) # we dont have to redirect here
 
 def author(storyName):
     return authors.get(storyName)
@@ -275,8 +276,8 @@ def singlestorypage(name="", valid = True, error=""):
 
     return render_template("singlestory.html", storyName=name, invalid = error)
 
-def createdstorypage(title="", content="", valid = True,hasEdit=""):
-    return render_template("createdstory.html", storyTitle=title, storyContent = content,edit=hasEdit)
+def createdstorypage(title="", content="", valid = True,hasEdit="", canEdit = ""):
+    return render_template("createdstory.html", storyTitle=title, storyContent = content,edit=hasEdit, Canedit = canEdit)
 
 #Navbar below:
 #=====================================================================================#
