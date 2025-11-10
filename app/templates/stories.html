@@ -133,7 +133,7 @@
 
     <ul>
         {% for story in stories %}
-        <li><a href="{{ url_for('createdstory', link=story) }}">{{ story }}</a> created by {{stories[story]}}
+        <li><a href="{{ url_for('createdstory', link=story) }}">{{ story }}</a> created by {{stories[story][0]}}
         {% endfor %}
 
         </li>

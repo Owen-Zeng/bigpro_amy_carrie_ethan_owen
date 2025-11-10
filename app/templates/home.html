@@ -139,7 +139,7 @@ time spent: 1.5
         <ul>
         Your stories:
             {% for story in edited_stories %}
-            <li><a href="{{ url_for('createdstory', link=story) }}">{{ story }}</a> created by {{edited_stories[story]}}
+            <li><a href="{{ url_for('createdstory', link=story) }}">{{ story }}</a> created by {{edited_stories[story][0]}}
             {% endfor %}
 
             </li>

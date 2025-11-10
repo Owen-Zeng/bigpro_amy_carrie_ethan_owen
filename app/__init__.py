@@ -203,8 +203,8 @@ def singlestory():
                     c.execute(f"INSERT OR REPLACE INTO stories VALUES ('{givenTitle}', '{request.form['content']}', '{request.form['content']}', '/singlestory/{givenTitle}', '{session['username']}');")
                     c.execute(f"INSERT OR REPLACE INTO authors VALUES ('{session['username']}', '{givenTitle}')")
                     storyDict[givenTitle] = request.form['content']        
-                    editors.update({givenTitle:session['username']})
-                    authors.update({givenTitle:session['username']})
+                    editors.update({givenTitle:[session['username']]})
+                    authors.update({givenTitle:[session['username']]})
             session.permanent = True
             return redirect(url_for('createdstory', link=givenTitle))
         return singlestorypage()
@@ -249,7 +249,11 @@ def createdstory(link):
         
     session.permanent = True
     if(seeLast):
-        return createdstorypage(storyRow[0], previousEdit[link], True, hasEdit, canEdit)
+        c.execute("SELECT previousEdit FROM stories WHERE storyTitle = ?", (link,))
+        row = c.fetchone()
+        last_edit = row[0] if row else ""
+        return createdstorypage(storyRow[0], last_edit, True, hasEdit, canEdit)
+
     return createdstorypage(storyRow[0], storyRow[1], True, hasEdit, canEdit) # we dont have to redirect here
 
 def author(storyName):
